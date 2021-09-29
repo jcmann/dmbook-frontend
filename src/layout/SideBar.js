@@ -1,9 +1,10 @@
 import React from "react";
+import { MainMenu } from "./MainMenu";
 
 export const Sidebar = (props) => {
   return (
     <aside>
-      <h2>Aside</h2>
+      <MainMenu />
     </aside>
   );
 };

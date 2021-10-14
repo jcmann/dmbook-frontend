@@ -1,19 +1,19 @@
 import { useDispatch } from 'react-redux';
 import { changeCurrentContent } from '../../../redux/displaySlice';
-import { logIn } from '../../../redux/loginSlice';
 
-export const Login = () => {
+export const CreateAccount = () => {
   const dispatch = useDispatch();
 
   const submitHandler = (event) => {
-    event.preventDefault();
-    dispatch(logIn());
-    dispatch(changeCurrentContent({ newContent: 'home' }));
+    event.preventDefault(); // TODO this will need to go
+    // send request to java
+    // route to login screen
+    dispatch(changeCurrentContent({ newContent: 'login' }));
   };
 
   return (
     <>
-      <h2>Log In</h2>
+      <h2>Create an Account</h2>
       <form onSubmit={submitHandler}>
         <div className="form-group">
           <label for="username">
@@ -41,7 +41,24 @@ export const Login = () => {
           </label>
         </div>
 
-        <input type="submit" className="btn btn-primary" value="Log In" />
+        <div className="form-group">
+          <label for="password2">
+            Confirm password:
+            <input
+              type="password"
+              name="password2"
+              id="password2"
+              className="form-control"
+              required
+            />
+          </label>
+        </div>
+
+        <input
+          type="submit"
+          className="btn btn-primary"
+          value="Create Account"
+        />
       </form>
     </>
   );

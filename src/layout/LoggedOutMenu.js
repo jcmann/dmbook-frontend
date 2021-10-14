@@ -12,6 +12,11 @@ export const LoggedOutMenu = (props) => {
     dispatch(logIn());
   };
 
+  const createAccountHandler = (event) => {
+    event.preventDefault();
+    dispatch(changeCurrentContent({ newContent: 'createAccount' }));
+  };
+
   return (
     <nav>
       <ul>
@@ -21,7 +26,9 @@ export const LoggedOutMenu = (props) => {
           </a>
         </li>
         <li>
-          <a href="#">Create Account</a>
+          <a href="#" onClick={createAccountHandler}>
+            Create Account
+          </a>
         </li>
       </ul>
     </nav>

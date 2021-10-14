@@ -8,10 +8,10 @@ export const Table = (props) => {
    */
 
   return (
-    <table>
+    <table className="table">
       <thead>
         {props.data.columns.map((current) => (
-          <th>{current}</th>
+          <th scope="col">{current}</th>
         ))}
       </thead>
     </table>

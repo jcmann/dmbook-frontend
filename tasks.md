@@ -1,10 +1,11 @@
-## Encounters
-
-Todo
+## Todo
 
 - Main content styling
   - primary/general
   - component specific
+- Login tracking
+  - Redux slice
+  - Login and logout buttons
 - Build out submenus
   - Characters submenu
   - Encounters submenu

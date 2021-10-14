@@ -1,12 +1,12 @@
-import { current } from "@reduxjs/toolkit";
-import React from "react";
-import { useSelector } from "react-redux";
+import { current } from '@reduxjs/toolkit';
+import React from 'react';
+import { useSelector } from 'react-redux';
 
-import { Characters } from "./mainContent/characters/Characters";
-import { Encounters } from "./mainContent/encounters/Encounters";
+import { Characters } from './mainContent/characters/Characters';
+import { Encounters } from './mainContent/encounters/Encounters';
 
 const styles = {
-  border: "1px solid black",
+  border: '1px solid black',
 };
 
 export const MainContent = (props) => {
@@ -15,9 +15,9 @@ export const MainContent = (props) => {
   console.log(`CurrentContent in MainContent: ${currentContent}`);
 
   return (
-    <main style={styles}>
-      {currentContent === "characters" && <Characters />}
-      {currentContent === "encounters" && <Encounters />}
+    <main className={'col-sm-8'} style={styles}>
+      {currentContent === 'characters' && <Characters />}
+      {currentContent === 'encounters' && <Encounters />}
     </main>
   );
 };

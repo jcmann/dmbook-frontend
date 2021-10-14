@@ -1,10 +1,10 @@
-import React from "react";
-import { MainMenu } from "./MainMenu";
-import { ToolMenu } from "./ToolMenu";
+import React from 'react';
+import { MainMenu } from './MainMenu';
+import { ToolMenu } from './ToolMenu';
 
 export const Sidebar = (props) => {
   return (
-    <aside>
+    <aside className="col-sm-3">
       <MainMenu />
       <ToolMenu />
     </aside>

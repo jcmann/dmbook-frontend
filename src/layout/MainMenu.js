@@ -1,12 +1,13 @@
-import { LoggedOutMenu } from "./LoggedOutMenu";
-import { LoggedInMenu } from "./LoggedInMenu";
+import { LoggedOutMenu } from './LoggedOutMenu';
+import { LoggedInMenu } from './LoggedInMenu';
+import { useSelector } from 'react-redux';
 
 export const MainMenu = (props) => {
-  const loggedInStatus = true;
+  const isLoggedIn = useSelector((state) => state.login.isLoggedIn);
   return (
     <nav>
-      {loggedInStatus && <LoggedInMenu />}
-      {!loggedInStatus && <LoggedOutMenu />}
+      {isLoggedIn && <LoggedInMenu />}
+      {!isLoggedIn && <LoggedOutMenu />}
     </nav>
   );
 };

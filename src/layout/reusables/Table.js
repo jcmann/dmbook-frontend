@@ -10,10 +10,24 @@ export const Table = (props) => {
   return (
     <table className="table">
       <thead>
-        {props.data.columns.map((current) => (
-          <th scope="col">{current}</th>
-        ))}
+        <tr>
+          {props.tableStructure.columns.map((current) => (
+            <th scope="col">{current}</th>
+          ))}
+        </tr>
       </thead>
+      <tbody>
+        {props.data &&
+          props.data.map((current) => {
+            return (
+              <tr>
+                {Object.entries(current).map((currProperty) => {
+                  return <td>{currProperty[1]}</td>;
+                })}
+              </tr>
+            );
+          })}
+      </tbody>
     </table>
   );
 };

@@ -1,5 +1,6 @@
-import { useSelector, useDispatch } from "react-redux";
-import { changeCurrentContent } from "../redux/displaySlice";
+import { useSelector, useDispatch } from 'react-redux';
+import { changeCurrentContent } from '../redux/displaySlice';
+import { logOut } from '../redux/loginSlice';
 
 export const LoggedInMenu = () => {
   const dispatch = useDispatch();
@@ -10,20 +11,20 @@ export const LoggedInMenu = () => {
 
   const homeClickHandler = (event) => {
     event.preventDefault();
-    console.log("Handler");
-    // navClickHandler("home");
-    dispatch(changeCurrentContent({ newContent: "home" }));
+    navClickHandler('home');
   };
   const charactersClickHandler = (event) => {
     event.preventDefault();
-    console.log("Handler");
-    // navClickHandler("characters");
-    dispatch(changeCurrentContent({ newContent: "characters" }));
+    navClickHandler('characters');
   };
   const encountersClickHandler = (event) => {
     event.preventDefault();
-    console.log("Handler");
-    navClickHandler("encounters");
+    navClickHandler('encounters');
+  };
+  const logoutHandler = (event) => {
+    event.preventDefault();
+    dispatch(logOut());
+    navClickHandler('home');
   };
 
   return (
@@ -41,6 +42,11 @@ export const LoggedInMenu = () => {
       <li>
         <a href="#" onClick={encountersClickHandler}>
           Encounters
+        </a>
+      </li>
+      <li>
+        <a href="#" onClick={logoutHandler}>
+          Log Out
         </a>
       </li>
     </ul>

@@ -1,11 +1,12 @@
 ## Todo
 
 - [x] Main content styling
-  - [ ] primary/general
-  - [ ] component specific
+  - [x] primary/general
+  - [x] component specific
 - [ ] Login tracking
-  - [ ] Redux slice
-  - [ ] Login and logout buttons
+  - [x] Redux slice async
+  - [x] Login and logout buttons async
+  - [ ] Connect Java backend and implement local storage in stubs
 - [ ] Build out submenus
   - [ ] Characters submenu
   - [ ] Encounters submenu

@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import { Characters } from './mainContent/characters/Characters';
 import { Encounters } from './mainContent/encounters/Encounters';
 import { Home } from './mainContent/home/Home';
+import { Login } from './mainContent/login/Login';
 
 const styles = {
   border: '1px solid black',
@@ -17,6 +18,7 @@ export const MainContent = (props) => {
   return (
     <main className={'col-sm-8'} style={styles}>
       {currentContent === 'home' && <Home />}
+      {currentContent === 'login' && <Login />}
       {currentContent === 'characters' && <Characters />}
       {currentContent === 'encounters' && <Encounters />}
     </main>

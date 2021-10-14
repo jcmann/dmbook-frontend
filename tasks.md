@@ -7,6 +7,8 @@
   - [x] Redux slice async
   - [x] Login and logout buttons async
   - [ ] Connect Java backend and implement local storage in stubs
+- [ ] Login page
+- [ ] Create account page
 - [ ] Build out submenus
   - [ ] Characters submenu
   - [ ] Encounters submenu

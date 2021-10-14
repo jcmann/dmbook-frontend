@@ -8,7 +8,7 @@ export const LoggedOutMenu = (props) => {
   const loginHandler = (event) => {
     event.preventDefault();
     // will need to change the mainContent component to a login component
-    changeCurrentContent({ newContent: 'login' });
+    dispatch(changeCurrentContent({ newContent: 'login' }));
     dispatch(logIn());
   };
 

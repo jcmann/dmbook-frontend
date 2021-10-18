@@ -8,8 +8,13 @@ export const LoggedOutMenu = (props) => {
   const loginHandler = (event) => {
     event.preventDefault();
     // will need to change the mainContent component to a login component
-    changeCurrentContent({ newContent: 'login' });
+    dispatch(changeCurrentContent({ newContent: 'login' }));
     dispatch(logIn());
+  };
+
+  const createAccountHandler = (event) => {
+    event.preventDefault();
+    dispatch(changeCurrentContent({ newContent: 'createAccount' }));
   };
 
   return (
@@ -21,7 +26,9 @@ export const LoggedOutMenu = (props) => {
           </a>
         </li>
         <li>
-          <a href="#">Create Account</a>
+          <a href="#" onClick={createAccountHandler}>
+            Create Account
+          </a>
         </li>
       </ul>
     </nav>

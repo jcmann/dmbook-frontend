@@ -1,13 +1,13 @@
 {
   "auth": {
-    "dmbookfrontend6b398e47": {
+    "dmbookfrontend71ab5ea6": {
       "service": "Cognito",
       "providerPlugin": "awscloudformation",
       "dependsOn": [],
       "customAuth": false,
       "frontendAuthConfig": {
         "loginMechanisms": [
-          "EMAIL"
+          "PREFERRED_USERNAME"
         ],
         "signupAttributes": [
           "EMAIL"

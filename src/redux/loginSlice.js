@@ -7,19 +7,21 @@ import { createSlice } from '@reduxjs/toolkit';
 export const loginSlice = createSlice({
   name: 'loginSlice',
   initialState: {
-    isLoggedIn: false,
+    authInfo: {
+      authState: 'signin',
+      user: {},
+    },
   },
   reducers: {
     logOut: (state, action) => {
-      state.isLoggedIn = false;
-      // do anything else necessary (clear session?)
+      state = {};
+      window.location.reload();
     },
-    logIn: (state, action) => {
-      // verification?
-      state.isLoggedIn = true;
+    updateAuthInfo: (state, action) => {
+      state.authInfo = action.payload.authInfo;
     },
   },
 });
 
-export const { logOut, logIn } = loginSlice.actions;
+export const { logOut, updateAuthInfo } = loginSlice.actions;
 export default loginSlice.reducer;

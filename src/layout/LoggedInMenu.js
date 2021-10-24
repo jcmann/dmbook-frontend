@@ -1,8 +1,10 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { changeCurrentContent } from '../redux/displaySlice';
 import { logOut } from '../redux/loginSlice';
+import { AmplifySignOut, withAuthenticator } from '@aws-amplify/ui-react';
+import { LogOutButton } from './mainContent/authComponents/LogOutButton';
 
-export const LoggedInMenu = () => {
+const LoggedInMenu = () => {
   const dispatch = useDispatch();
 
   const navClickHandler = (newContentProvided) => {
@@ -45,10 +47,10 @@ export const LoggedInMenu = () => {
         </a>
       </li>
       <li>
-        <a href="#" onClick={logoutHandler}>
-          Log Out
-        </a>
+        <LogOutButton />
       </li>
     </ul>
   );
 };
+
+export default LoggedInMenu;

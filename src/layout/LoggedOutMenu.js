@@ -5,13 +5,6 @@ import { logIn } from '../redux/loginSlice';
 export const LoggedOutMenu = (props) => {
   const dispatch = useDispatch();
 
-  const loginHandler = (event) => {
-    event.preventDefault();
-    // will need to change the mainContent component to a login component
-    dispatch(changeCurrentContent({ newContent: 'login' }));
-    dispatch(logIn());
-  };
-
   const createAccountHandler = (event) => {
     event.preventDefault();
     dispatch(changeCurrentContent({ newContent: 'createAccount' }));
@@ -21,9 +14,7 @@ export const LoggedOutMenu = (props) => {
     <nav>
       <ul>
         <li>
-          <a href="#" onClick={loginHandler}>
-            Log In
-          </a>
+          <a href="#">Log In</a>
         </li>
         <li>
           <a href="#" onClick={createAccountHandler}>

@@ -14,18 +14,14 @@ export const loginSlice = createSlice({
   },
   reducers: {
     logOut: (state, action) => {
-      state.isLoggedIn = false;
-      // do anything else necessary (clear session?)
-    },
-    logIn: (state, action) => {
-      // verification?
-      state.isLoggedIn = true;
+      state = {};
+      window.location.reload();
     },
     updateAuthInfo: (state, action) => {
-      state.authInfo = action.payload;
+      state.authInfo = action.payload.authInfo;
     },
   },
 });
 
-export const { logOut, logIn, updateAuthInfo } = loginSlice.actions;
+export const { logOut, updateAuthInfo } = loginSlice.actions;
 export default loginSlice.reducer;

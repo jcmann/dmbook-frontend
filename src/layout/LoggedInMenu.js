@@ -2,6 +2,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { changeCurrentContent } from '../redux/displaySlice';
 import { logOut } from '../redux/loginSlice';
 import { AmplifySignOut, withAuthenticator } from '@aws-amplify/ui-react';
+import { LogOutButton } from './mainContent/authComponents/LogOutButton';
 
 const LoggedInMenu = () => {
   const dispatch = useDispatch();
@@ -46,7 +47,7 @@ const LoggedInMenu = () => {
         </a>
       </li>
       <li>
-        <AmplifySignOut />
+        <LogOutButton />
       </li>
     </ul>
   );

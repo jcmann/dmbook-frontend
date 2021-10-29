@@ -47,3 +47,5 @@ amplify/.config/
 amplify/README.md 
 amplify/backend/auth/
 amplify/team-provider-info.json
+
+src/layout/mainContent/characters/forms/example.js

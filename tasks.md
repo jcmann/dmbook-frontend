@@ -3,16 +3,10 @@
 - [x] Main content styling
   - [x] primary/general
   - [x] component specific
+  - [ ] Button styling
 - [ ] Login tracking
-  - [x] Redux slice async
-  - [x] Login and logout buttons async
-  - [ ] Connect Java backend and implement local storage in stubs
-- [ ] Login page
-  - [x] Base form, disconnected
-  - [ ] Connect to Java
-- [ ] Create account page
-  - [x] Base form, disconnected
-  - [ ] Connect to Java
+  - [x] AWS Amplify components for sign in/sign out
+  - [ ] Connect to database for API requests?
 - [ ] Build out submenus
   - [ ] Characters submenu
   - [ ] Encounters submenu

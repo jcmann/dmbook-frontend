@@ -87,3 +87,5 @@ const CharacterForm = (props) => {
     </div>
   );
 };
+
+export default CharacterForm;

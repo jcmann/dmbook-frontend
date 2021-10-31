@@ -13,8 +13,6 @@ const styles = {
 
 export const MainContent = (props) => {
   const currentContent = useSelector((state) => state.display.currentContent);
-  // let currentContent = "characters";
-  console.log(`CurrentContent in MainContent: ${currentContent}`);
 
   return (
     <main className={'col-sm-8'} style={styles}>

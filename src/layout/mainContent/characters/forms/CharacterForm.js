@@ -1,5 +1,7 @@
 import { Field, Form } from 'react-final-form';
 
+const required = (value) => (value ? undefined : 'Required');
+
 const CharacterForm = (props) => {
   let formData = {};
 
@@ -9,10 +11,15 @@ const CharacterForm = (props) => {
 
   // TODO add the stats once basic form is set up
 
+  const submitHandler = (event) => {
+    event.preventDefault();
+    console.log('Submitting new character....');
+  };
+
   return (
     <div>
       <Form
-        onSubmit={props.onSubmit}
+        onSubmit={submitHandler}
         initialValues={formData}
         render={({ handleSubmit, form, submitting, pristine, values }) => (
           <form onSubmit={handleSubmit}>
@@ -71,7 +78,7 @@ const CharacterForm = (props) => {
             </Field>
             <div>
               <button type="submit" disabled={submitting || pristine}>
-                Submits
+                Submit
               </button>
               <button
                 type="button"

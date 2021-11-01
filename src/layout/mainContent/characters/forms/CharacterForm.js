@@ -11,8 +11,7 @@ const CharacterForm = (props) => {
 
   // TODO add the stats once basic form is set up
 
-  const submitHandler = (event) => {
-    event.preventDefault();
+  const submitHandler = () => {
     console.log('Submitting new character....');
   };
 

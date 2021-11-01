@@ -16,11 +16,14 @@
     - [ ] Edit icon and functionality
     - [ ] Delete icon and functionality
   - [ ] Add new Character page
-  - [ ] Edit character page (should just be add?)
+    - [x] Write
+    - [ ] Connect to backend
 - [ ] Encounters page
   - [ ] Main page
     - [x] Table
     - [ ] Edit icon and functionality
     - [ ] Delete icon and functionality
   - [ ] Add new Encounter page
+    - [x] Write
+    - [ ] Connect to backend
   - [ ] Edit encounter page

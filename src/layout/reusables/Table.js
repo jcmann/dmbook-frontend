@@ -1,3 +1,4 @@
+import TestButton from '../reusables/TestButton';
 export const Table = (props) => {
   /**
    * Needs to receive: table structure, data
@@ -6,6 +7,12 @@ export const Table = (props) => {
    * When we get the data from the request we might need
    * to verify it "has" the correct # of cols
    */
+
+  const dataWithActions = props.data.map((current) => {
+    return { actions: <TestButton itemID={current.id} />, ...current };
+  });
+
+  // TODO: edit & delete should be replaced with icons
 
   return (
     <table className="table">
@@ -18,7 +25,7 @@ export const Table = (props) => {
       </thead>
       <tbody>
         {props.data &&
-          props.data.map((current) => {
+          dataWithActions.map((current) => {
             return (
               <tr>
                 {Object.entries(current).map((currProperty) => {

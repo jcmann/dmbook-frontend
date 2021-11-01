@@ -1,7 +1,7 @@
 import { Table } from '../../reusables/Table';
 
 export const Characters = () => {
-  const tableCols = ['Name', 'Level', 'Class', 'Race'];
+  const tableCols = ['', 'ID', 'Name', 'Level', 'Class', 'Race'];
   const tableData = {
     columns: tableCols,
     type: 'characters',

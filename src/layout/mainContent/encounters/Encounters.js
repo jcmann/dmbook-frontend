@@ -29,7 +29,11 @@ export const Encounters = () => {
   return (
     <>
       <h2>Encounters</h2>
-      <Table tableStructure={tableData} data={mockData} />
+      <Table
+        tableStructure={tableData}
+        data={mockData}
+        resourceType="encounters"
+      />
     </>
   );
 };

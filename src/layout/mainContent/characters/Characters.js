@@ -34,7 +34,11 @@ export const Characters = () => {
   return (
     <>
       <h2>Characters</h2>
-      <Table tableStructure={tableData} data={mockCharData} />
+      <Table
+        tableStructure={tableData}
+        data={mockCharData}
+        resourceType="characters"
+      />
     </>
   );
 };

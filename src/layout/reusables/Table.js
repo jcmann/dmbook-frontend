@@ -1,4 +1,4 @@
-import TestButton from '../reusables/TestButton';
+import EditIcon from './EditIcon';
 export const Table = (props) => {
   /**
    * Needs to receive: table structure, data
@@ -9,7 +9,10 @@ export const Table = (props) => {
    */
 
   const dataWithActions = props.data.map((current) => {
-    return { actions: <TestButton itemID={current.id} />, ...current };
+    return {
+      edit: <EditIcon itemID={current.id} resourceType={props.resourceType} />,
+      ...current,
+    };
   });
 
   // TODO: edit & delete should be replaced with icons

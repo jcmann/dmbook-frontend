@@ -1,4 +1,6 @@
 import EditIcon from './EditIcon';
+import DeleteIcon from './DeleteIcon';
+
 export const Table = (props) => {
   /**
    * Needs to receive: table structure, data
@@ -10,7 +12,12 @@ export const Table = (props) => {
 
   const dataWithActions = props.data.map((current) => {
     return {
-      edit: <EditIcon itemID={current.id} resourceType={props.resourceType} />,
+      actions: (
+        <div className="editAndDelete">
+          <EditIcon itemID={current.id} resourceType={props.resourceType} />
+          <DeleteIcon />
+        </div>
+      ),
       ...current,
     };
   });

@@ -25,25 +25,39 @@ const CharacterForm = (props) => {
           <form onSubmit={handleSubmit}>
             <Field name="name" validate={required}>
               {({ input, meta }) => (
-                <div>
+                <div className="form-group">
                   <label>Name:</label>
-                  <input {...input} type="text" placeholder="Name" />
+                  <input
+                    {...input}
+                    type="text"
+                    placeholder="Name"
+                    className="form-control"
+                  />
                   {meta.error && meta.touched && <span>{meta.error}</span>}
                 </div>
               )}
             </Field>
             <Field name="level" validate={required}>
               {({ input, meta }) => (
-                <div>
+                <div className="form-group">
                   <label>Level:</label>
-                  <input {...input} type="text" placeholder="Level" />
+                  <input
+                    {...input}
+                    type="text"
+                    placeholder="Level"
+                    className="form-control"
+                  />
                   {meta.error && meta.touched && <span>{meta.error}</span>}
                 </div>
               )}
             </Field>
-            <div>
-              <label>Class:</label>
-              <Field name="characterClass" component="select">
+            <div className="form-group">
+              <label>Race:</label>
+              <Field
+                name="characterClass"
+                component="select"
+                className="form-control"
+              >
                 <option value="halfling">Halfling</option>
                 <option value="elf">Elf</option>
                 <option value="dragonborn">Dragonborn</option>
@@ -51,39 +65,59 @@ const CharacterForm = (props) => {
             </div>
             <Field name="race" validate={required}>
               {({ input, meta }) => (
-                <div>
-                  <label>Race:</label>
-                  <input {...input} type="text" placeholder="Halfling" />
+                <div className="form-group">
+                  <label>Class:</label>
+                  <input
+                    {...input}
+                    type="text"
+                    placeholder="Barbarian"
+                    className="form-control"
+                  />
                   {meta.error && meta.touched && <span>{meta.error}</span>}
                 </div>
               )}
             </Field>
             <Field name="hitPoints" validate={required}>
               {({ input, meta }) => (
-                <div>
+                <div className="form-group">
                   <label>HP:</label>
-                  <input {...input} type="text" placeholder="Hit Points" />
+                  <input
+                    {...input}
+                    type="text"
+                    placeholder="Hit Points"
+                    className="form-control"
+                  />
                   {meta.error && meta.touched && <span>{meta.error}</span>}
                 </div>
               )}
             </Field>
             <Field name="armorClass" validate={required}>
               {({ input, meta }) => (
-                <div>
+                <div className="form-group">
                   <label>AC:</label>
-                  <input {...input} type="text" placeholder="Armor Class" />
+                  <input
+                    {...input}
+                    type="text"
+                    placeholder="Armor Class"
+                    className="form-control"
+                  />
                   {meta.error && meta.touched && <span>{meta.error}</span>}
                 </div>
               )}
             </Field>
-            <div>
-              <button type="submit" disabled={submitting || pristine}>
+            <div className="form-group">
+              <button
+                type="submit"
+                disabled={submitting || pristine}
+                className="btn btn-primary"
+              >
                 Submit
               </button>
               <button
                 type="button"
                 onClick={form.reset}
                 disabled={submitting || pristine}
+                className="btn btn-link"
               >
                 Reset
               </button>

@@ -13,6 +13,7 @@ const CharacterForm = (props) => {
 
   const submitHandler = () => {
     console.log('Submitting new character....');
+    // TODO actually connect this to API
   };
 
   return (

@@ -13,6 +13,7 @@ export const Table = (props) => {
   });
 
   // TODO: edit & delete should be replaced with icons
+  // TODO: edit & delete icons will need a resourcetype sort of prop, probably pulled from display state
 
   return (
     <table className="table">

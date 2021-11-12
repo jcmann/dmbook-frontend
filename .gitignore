@@ -17,10 +17,18 @@
 .env.development.local
 .env.test.local
 .env.production.local
+.vscode/
 
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+amplify/.config/
+amplify/README.md
+amplify/backend/auth/
+amplify/team-provider-info.json
+
+src/layout/mainContent/characters/forms/example.js
 
 #amplify-do-not-edit-begin
 amplify/\#current-cloud-backend
@@ -43,9 +51,3 @@ amplifytools.xcconfig
 .secret-*
 **.sample
 #amplify-do-not-edit-end
-amplify/.config/
-amplify/README.md 
-amplify/backend/auth/
-amplify/team-provider-info.json
-
-src/layout/mainContent/characters/forms/example.js

@@ -105,60 +105,62 @@ const CharacterForm = (props) => {
                 </div>
               )}
             </Field>
-            <Field name="strength" validate={required}>
-              {({ input, meta }) => (
-                <div className="form-group">
-                  <label>Strength:</label>
-                  <input {...input} type="number" className="form-control" />
-                  {meta.error && meta.touched && <span>{meta.error}</span>}
-                </div>
-              )}
-            </Field>
-            <Field name="dexterity" validate={required}>
-              {({ input, meta }) => (
-                <div className="form-group">
-                  <label>Dexterity:</label>
-                  <input {...input} type="number" className="form-control" />
-                  {meta.error && meta.touched && <span>{meta.error}</span>}
-                </div>
-              )}
-            </Field>
-            <Field name="constitution" validate={required}>
-              {({ input, meta }) => (
-                <div className="form-group">
-                  <label>Constitution:</label>
-                  <input {...input} type="number" className="form-control" />
-                  {meta.error && meta.touched && <span>{meta.error}</span>}
-                </div>
-              )}
-            </Field>
-            <Field name="intelligence" validate={required}>
-              {({ input, meta }) => (
-                <div className="form-group">
-                  <label>Intelligence:</label>
-                  <input {...input} type="number" className="form-control" />
-                  {meta.error && meta.touched && <span>{meta.error}</span>}
-                </div>
-              )}
-            </Field>
-            <Field name="wisdom" validate={required}>
-              {({ input, meta }) => (
-                <div className="form-group">
-                  <label>Wisdom:</label>
-                  <input {...input} type="number" className="form-control" />
-                  {meta.error && meta.touched && <span>{meta.error}</span>}
-                </div>
-              )}
-            </Field>
-            <Field name="charisma" validate={required}>
-              {({ input, meta }) => (
-                <div className="form-group">
-                  <label>Charisma:</label>
-                  <input {...input} type="number" className="form-control" />
-                  {meta.error && meta.touched && <span>{meta.error}</span>}
-                </div>
-              )}
-            </Field>
+            <fieldset>
+              <Field name="strength" validate={required}>
+                {({ input, meta }) => (
+                  <div className="form-group">
+                    <label>Strength:</label>
+                    <input {...input} type="number" className="form-control" />
+                    {meta.error && meta.touched && <span>{meta.error}</span>}
+                  </div>
+                )}
+              </Field>
+              <Field name="dexterity" validate={required}>
+                {({ input, meta }) => (
+                  <div className="form-group">
+                    <label>Dexterity:</label>
+                    <input {...input} type="number" className="form-control" />
+                    {meta.error && meta.touched && <span>{meta.error}</span>}
+                  </div>
+                )}
+              </Field>
+              <Field name="constitution" validate={required}>
+                {({ input, meta }) => (
+                  <div className="form-group">
+                    <label>Constitution:</label>
+                    <input {...input} type="number" className="form-control" />
+                    {meta.error && meta.touched && <span>{meta.error}</span>}
+                  </div>
+                )}
+              </Field>
+              <Field name="intelligence" validate={required}>
+                {({ input, meta }) => (
+                  <div className="form-group">
+                    <label>Intelligence:</label>
+                    <input {...input} type="number" className="form-control" />
+                    {meta.error && meta.touched && <span>{meta.error}</span>}
+                  </div>
+                )}
+              </Field>
+              <Field name="wisdom" validate={required}>
+                {({ input, meta }) => (
+                  <div className="form-group">
+                    <label>Wisdom:</label>
+                    <input {...input} type="number" className="form-control" />
+                    {meta.error && meta.touched && <span>{meta.error}</span>}
+                  </div>
+                )}
+              </Field>
+              <Field name="charisma" validate={required}>
+                {({ input, meta }) => (
+                  <div className="form-group">
+                    <label>Charisma:</label>
+                    <input {...input} type="number" className="form-control" />
+                    {meta.error && meta.touched && <span>{meta.error}</span>}
+                  </div>
+                )}
+              </Field>
+            </fieldset>
             <div className="form-group">
               <button
                 type="submit"

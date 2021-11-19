@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-dmbookfrontend-dev-194643-authRole",
+      "UnauthRoleArn": "arn:aws:iam::497900773609:role/amplify-dmbookfrontend-dev-194643-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::497900773609:role/amplify-dmbookfrontend-dev-194643-authRole",
+      "Region": "us-east-2",
+      "DeploymentBucketName": "amplify-dmbookfrontend-dev-194643-deployment",
+      "UnauthRoleName": "amplify-dmbookfrontend-dev-194643-unauthRole",
+      "StackName": "amplify-dmbookfrontend-dev-194643",
+      "StackId": "arn:aws:cloudformation:us-east-2:497900773609:stack/amplify-dmbookfrontend-dev-194643/341d7850-313f-11ec-8916-02602f394520",
+      "AmplifyAppId": "d1gt0sq9ejv6qd"
+    },
+    "categories": {
+      "auth": {
+        "dmbookfrontend71ab5ea6": {}
+      }
+    }
+  }
+}

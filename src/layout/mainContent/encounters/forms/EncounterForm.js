@@ -1,8 +1,20 @@
+import { useState } from 'react';
 import { Field, Form } from 'react-final-form';
+import Select from 'react-select';
 
 const required = (value) => (value ? undefined : 'Required');
 
+const mockMonsters = [
+  { value: 'Aboleth', label: 'Aboleth' },
+  { value: 'Acolyte', label: 'Acolyte' },
+  { value: 'Ancient Red Dragon', label: 'Ancient Red Dragon' },
+  { value: 'Bandit', label: 'Bandit' },
+  { value: 'Bat', label: 'Bat' },
+];
+
 const EncounterForm = (props) => {
+  const [selectedOption, setSelectedOption] = useState(null);
+
   let formData = {};
 
   const submitHandler = () => {
@@ -62,11 +74,12 @@ const EncounterForm = (props) => {
               {({ input, meta }) => (
                 <div className="form-group">
                   <label>Monsters:</label>
-                  <input
-                    {...input}
-                    type="text"
-                    placeholder="Aboleth"
-                    className="form-control"
+                  <Select
+                    defaultValue={selectedOption}
+                    onChange={setSelectedOption}
+                    options={mockMonsters}
+                    isMulti={true}
+                    isSearchable={true}
                   />
                   {meta.error && meta.touched && <span>{meta.error}</span>}
                 </div>

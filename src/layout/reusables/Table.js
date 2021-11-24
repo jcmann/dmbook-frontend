@@ -1,7 +1,10 @@
-import EditIcon from './EditIcon';
-import DeleteIcon from './DeleteIcon';
+import EditIcon from "./EditIcon";
+import DeleteIcon from "./DeleteIcon";
+import { useSelector } from "react-redux";
 
 export const Table = (props) => {
+  const currentContent = useSelector((state) => state.display.currentContent);
+  const currentData = useSelector((state) => state.data.resources);
   /**
    * Needs to receive: table structure, data
    * Data might want to come from state
@@ -10,17 +13,27 @@ export const Table = (props) => {
    * to verify it "has" the correct # of cols
    */
 
-  const dataWithActions = props.data.map((current) => {
-    return {
-      actions: (
-        <div className="editAndDelete">
-          <EditIcon itemID={current.id} resourceType={props.resourceType} />
-          <DeleteIcon />
-        </div>
-      ),
-      ...current,
-    };
-  });
+  /*
+        Concept: rework this to instead completely pull from state instead of props
+   */
+
+  const dataWithActions = () => {
+    if (currentData !== null) {
+      return currentData.map((current) => {
+        return {
+          actions: (
+            <div className="editAndDelete">
+              <EditIcon itemID={current.id} resourceType={currentContent} />
+              <DeleteIcon />
+            </div>
+          ),
+          ...current,
+        };
+      });
+    } else {
+      return [];
+    }
+  };
 
   // TODO: edit & delete should be replaced with icons
   // TODO: edit & delete icons will need a resourcetype sort of prop, probably pulled from display state
@@ -35,8 +48,8 @@ export const Table = (props) => {
         </tr>
       </thead>
       <tbody>
-        {props.data &&
-          dataWithActions.map((current) => {
+        {props.data ? (
+          dataWithActions().map((current) => {
             return (
               <tr>
                 {Object.entries(current).map((currProperty) => {
@@ -44,7 +57,12 @@ export const Table = (props) => {
                 })}
               </tr>
             );
-          })}
+          })
+        ) : (
+          <td colspan={props.tableStructure.columns.length}>
+            Results could not be retrieved.
+          </td>
+        )}
       </tbody>
     </table>
   );

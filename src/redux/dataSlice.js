@@ -9,13 +9,18 @@ import { API_BASE_URL, USERS_ENDPOINT } from "../config/config";
 export const getAllResourcesThunk = createAsyncThunk(
   "api/getAll",
   async (arg, { dispatch, getState, signal }) => {
-    let URL = API_BASE_URL + arg.jwt + USERS_ENDPOINT;
+    let URL = USERS_ENDPOINT + arg.jwt + "/" + arg.dataEndpoint;
     const response = await fetch(URL)
       .then((data) => {
         return data.json();
       })
-      .then((jsonData) => {
-        console.log(jsonData);
+      .then((dataJSON) => {
+        console.log("In the getAllResourcesThunk. Data is currently:");
+        console.log(dataJSON);
+        return dataJSON;
+      })
+      .catch((err) => {
+        console.error(err);
       });
   }
 );
@@ -25,11 +30,23 @@ export const getAllResourcesThunk = createAsyncThunk(
  */
 export const dataSlice = createSlice({
   name: "dataSlice",
-  initialState: {},
+  initialState: {
+    loadingStatus: null,
+    resources: [],
+  },
   reducers: {},
   extraReducers: {
     [getAllResourcesThunk.fulfilled](state, { payload }) {
+      console.log("PAYLOAD: ");
+      console.log(payload);
       state.resources = payload;
+      state.loadingStatus = "FULFILLED";
+    },
+    [getAllResourcesThunk.pending](state) {
+      state.loadingStatus = "PENDING";
+    },
+    [getAllResourcesThunk.rejected](state, { error }) {
+      state.loadingStatus = "REJECTED";
     },
   },
 });

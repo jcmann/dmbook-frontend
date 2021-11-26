@@ -17,12 +17,6 @@ export const Characters = () => {
 
   // Run this request once when the component first renders to request characters
   useEffect(() => {
-    // dispatch(
-    //   getAllResourcesThunk({
-    //     jwt: userData.signInUserSession.idToken.jwtToken,
-    //     dataEndpoint: "characters",
-    //   })
-    // );
     const promise = dispatch(
       getAllResourcesThunk({
         jwt: userData.signInUserSession.idToken.jwtToken,
@@ -33,30 +27,6 @@ export const Characters = () => {
       promise.abort();
     };
   }, [getAllResourcesThunk]);
-
-  // const mockCharData = [
-  //   {
-  //     id: 1,
-  //     name: "Professor Rigby",
-  //     level: 15,
-  //     class: "Bard",
-  //     race: "Tabaxi",
-  //   },
-  //   {
-  //     id: 2,
-  //     name: "Tanqueray Togstad",
-  //     level: 5,
-  //     class: "Rogue",
-  //     race: "Halfling",
-  //   },
-  //   {
-  //     id: 3,
-  //     name: "Mozzy Peck",
-  //     level: 8,
-  //     class: "Paladin",
-  //     race: "Half-Elf",
-  //   },
-  // ];
 
   return (
     <>

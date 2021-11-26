@@ -59,9 +59,11 @@ export const Table = (props) => {
             );
           })
         ) : (
-          <td colspan={props.tableStructure.columns.length}>
-            Results could not be retrieved.
-          </td>
+          <tr>
+            <td colSpan={props.tableStructure.columns.length}>
+              Results could not be retrieved.
+            </td>
+          </tr>
         )}
       </tbody>
     </table>

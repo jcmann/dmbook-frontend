@@ -22,6 +22,8 @@ export const getAllResourcesThunk = createAsyncThunk(
       .catch((err) => {
         console.error(err);
       });
+
+    return response;
   }
 );
 
@@ -43,6 +45,7 @@ export const dataSlice = createSlice({
       state.loadingStatus = "FULFILLED";
     },
     [getAllResourcesThunk.pending](state) {
+      console.log("PENDING");
       state.loadingStatus = "PENDING";
     },
     [getAllResourcesThunk.rejected](state, { error }) {

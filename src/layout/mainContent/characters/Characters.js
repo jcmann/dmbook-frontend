@@ -6,7 +6,7 @@ import { getAllResourcesThunk } from "../../../redux/dataSlice";
 
 export const Characters = () => {
   const dispatch = useDispatch();
-  const userData = useSelector((state) => state.login.authInfo);
+  const userData = useSelector((state) => state.login.authInfo.user);
   const characterData = useSelector((state) => state.data.resources);
 
   const tableCols = ["", "ID", "Name", "Level", "Class", "Race"];
@@ -17,13 +17,22 @@ export const Characters = () => {
 
   // Run this request once when the component first renders to request characters
   useEffect(() => {
-    dispatch(
+    // dispatch(
+    //   getAllResourcesThunk({
+    //     jwt: userData.signInUserSession.idToken.jwtToken,
+    //     dataEndpoint: "characters",
+    //   })
+    // );
+    const promise = dispatch(
       getAllResourcesThunk({
-        jwt: userData.user.signInUserSession.idToken.jwtToken,
+        jwt: userData.signInUserSession.idToken.jwtToken,
         dataEndpoint: "characters",
       })
     );
-  }, []);
+    return () => {
+      promise.abort();
+    };
+  }, [getAllResourcesThunk]);
 
   // const mockCharData = [
   //   {

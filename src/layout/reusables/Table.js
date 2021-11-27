@@ -2,6 +2,8 @@ import EditIcon from "./EditIcon";
 import DeleteIcon from "./DeleteIcon";
 import { useSelector } from "react-redux";
 
+// TODO figure out table generation bug where extra tds are created (might be 2x?)
+
 export const Table = (props) => {
   const currentContent = useSelector((state) => state.display.currentContent);
   const currentData = useSelector((state) => state.data.resources);
@@ -12,11 +14,6 @@ export const Table = (props) => {
    * When we get the data from the request we might need
    * to verify it "has" the correct # of cols
    */
-
-  /*
-        Concept: rework this to instead completely pull from state instead of props
-   */
-
   const dataWithActions = () => {
     if (currentData !== null) {
       return currentData.map((current) => {
@@ -34,9 +31,6 @@ export const Table = (props) => {
       return [];
     }
   };
-
-  // TODO: edit & delete should be replaced with icons
-  // TODO: edit & delete icons will need a resourcetype sort of prop, probably pulled from display state
 
   return (
     <table className="table">

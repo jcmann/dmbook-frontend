@@ -24,7 +24,7 @@ export const Table = (props) => {
           actions: (
             <div className="editAndDelete">
               <EditIcon itemID={current.id} resourceType={currentContent} />
-              <DeleteIcon />
+              <DeleteIcon itemID={current.id} resourceType={currentContent} />
             </div>
           ),
           ...current,

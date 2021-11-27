@@ -1,7 +1,12 @@
 const DeleteIcon = (props) => {
   return (
     <>
-      <a className="dmbookIcon" href="">
+      <a
+        itemID={props.itemID}
+        resourceType={props.resourceType}
+        className="dmbookIcon"
+        href=""
+      >
         <i className="fas fa-trash"></i>
       </a>
     </>

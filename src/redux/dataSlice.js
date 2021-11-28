@@ -124,7 +124,7 @@ export const dataSlice = createSlice({
     [deleteResourceThunk.rejected](state, { error }) {
       state.loadingStatus = "REJECTED";
     },
-    [addResourceThunk().fulfilled](state, { payload }) {
+    [addResourceThunk.fulfilled](state, { payload }) {
       console.log("In addResourceThunk.fulfilled reducer.");
       console.log(payload);
       // probably reload the component or do something
@@ -135,6 +135,19 @@ export const dataSlice = createSlice({
       state.loadingStatus = "PENDING";
     },
     [addResourceThunk.rejected](state, { error }) {
+      state.loadingStatus = "REJECTED";
+    },
+    [editResourceThunk.fulfilled](state, { payload }) {
+      console.log("In editResourceThunk.fulfilled reducer.");
+      console.log(payload);
+      // probably reload the component or do something
+      state.loadingStatus = "FULFILLED";
+    },
+    [editResourceThunk.pending](state) {
+      console.log("editResource PENDING");
+      state.loadingStatus = "PENDING";
+    },
+    [editResourceThunk.rejected](state, { error }) {
       state.loadingStatus = "REJECTED";
     },
   },

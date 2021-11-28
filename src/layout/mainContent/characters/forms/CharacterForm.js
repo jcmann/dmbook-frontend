@@ -6,8 +6,17 @@ const required = (value) => (value ? undefined : "Required");
 const CharacterForm = (props) => {
   const dispatch = useDispatch();
   const userData = useSelector((state) => state.login.authInfo.user);
+  const resourceData = useSelector((state) => state.data.resources);
+  const currentlyEditing = useSelector((state) => state.data.editResourceID);
 
-  let formData = {};
+  // An immediately invoked function to assign initial form values based on state
+  let formData = (() => {
+    if (resourceData) {
+      return resourceData.filter(
+        (current) => current.id === currentlyEditing
+      )[0];
+    }
+  })();
 
   /**
    * Fields for MVP: Name, Level, Class, Race, Health, AC, Primary Stats

@@ -1,6 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
 import { changeCurrentContent } from "../../redux/displaySlice";
-import { editResourceThunk } from "../../redux/dataSlice";
+import {
+  editResourceThunk,
+  changeEditingStatuses,
+} from "../../redux/dataSlice";
 
 import "./EditIcon.css";
 
@@ -15,6 +18,9 @@ const EditIcon = (props) => {
     event.preventDefault();
     dispatch(
       changeCurrentContent({ newContent: `${props.resourceType}:edit` })
+    );
+    dispatch(
+      changeEditingStatuses({ isEditing: true, editResourceID: props.itemID })
     );
   };
 

@@ -23,6 +23,7 @@ const AddNewCharacter = (props) => {
 
   const editSubmitHandler = () => {
     console.log("Editing.");
+    // TODO
   };
 
   return (

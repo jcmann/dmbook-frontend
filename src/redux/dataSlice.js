@@ -95,8 +95,15 @@ export const dataSlice = createSlice({
   initialState: {
     loadingStatus: null,
     resources: [],
+    isEditing: false,
+    editResourceID: 0,
   },
-  reducers: {},
+  reducers: {
+    changeEditingStatuses(state, action) {
+      state.isEditing = action.payload.isEditing;
+      state.editResourceID = action.payload.editResourceID;
+    },
+  },
   extraReducers: {
     [getAllResourcesThunk.fulfilled](state, { payload }) {
       console.log("PAYLOAD: ");
@@ -152,5 +159,7 @@ export const dataSlice = createSlice({
     },
   },
 });
+
+export const { changeEditingStatuses } = dataSlice.actions;
 
 export default dataSlice.reducer;

@@ -66,6 +66,27 @@ export const addResourceThunk = createAsyncThunk(
   }
 );
 
+export const editResourceThunk = createAsyncThunk(
+  "api/put",
+  async (arg, { dispatch, getState, signal }) => {
+    let URL =
+      USERS_ENDPOINT + arg.jwt + "/" + arg.dataEndpoint + "/" + arg.resource.id;
+    let body = JSON.Stringify(arg.formData);
+    const response = fetch(URL, {
+      method: "POST",
+      body: body,
+      headers: { "Content-Type": "application/json" },
+    })
+      .then((data) => {
+        console.log("Response from PUT: ");
+        console.log(data);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }
+);
+
 /**
  * This slice handles all connectivity to the API
  */

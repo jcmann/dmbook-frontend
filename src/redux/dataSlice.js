@@ -27,6 +27,26 @@ export const getAllResourcesThunk = createAsyncThunk(
   }
 );
 
+export const deleteResourceThunk = createAsyncThunk(
+  "api/delete",
+  async (arg, { dispatch, getState, signal }) => {
+    let URL = USERS_ENDPOINT + arg.jwt + "/" + arg.dataEndpoint + "/" + arg.id;
+    const response = await fetch(URL, { method: "DELETE" })
+      .then((data) => {
+        return data.json();
+      })
+      .then((dataJSON) => {
+        console.log("In the deleteResourceThunk. Response data is currently:");
+        console.log(dataJSON);
+        // probably delete from local state here to reduce traffic requests
+        return dataJSON;
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }
+);
+
 /**
  * This slice handles all connectivity to the API
  */
@@ -49,6 +69,19 @@ export const dataSlice = createSlice({
       state.loadingStatus = "PENDING";
     },
     [getAllResourcesThunk.rejected](state, { error }) {
+      state.loadingStatus = "REJECTED";
+    },
+    [deleteResourceThunk.fulfilled](state, { payload }) {
+      console.log("In deleteResourceThunk.fulfilled reducer.");
+      console.log(payload);
+      // probably reload the component or do something
+      state.loadingStatus = "FULFILLED";
+    },
+    [deleteResourceThunk.pending](state) {
+      console.log("deleteResource PENDING");
+      state.loadingStatus = "PENDING";
+    },
+    [deleteResourceThunk.rejected](state, { error }) {
       state.loadingStatus = "REJECTED";
     },
   },

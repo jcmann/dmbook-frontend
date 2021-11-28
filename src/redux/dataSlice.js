@@ -47,6 +47,25 @@ export const deleteResourceThunk = createAsyncThunk(
   }
 );
 
+export const addResourceThunk = createAsyncThunk(
+  "api/post",
+  async (arg, { dispatch, getState, signal }) => {
+    let URL = USERS_ENDPOINT + arg.jwt + "/" + arg.dataEndpoint; // api/users/:jwt/characters for example
+    let body = JSON.stringify(arg.formData);
+    const response = fetch(URL, {
+      method: "POST",
+      body: body,
+      headers: { "Content-Type": "application/json" },
+    })
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }
+);
+
 /**
  * This slice handles all connectivity to the API
  */
@@ -82,6 +101,19 @@ export const dataSlice = createSlice({
       state.loadingStatus = "PENDING";
     },
     [deleteResourceThunk.rejected](state, { error }) {
+      state.loadingStatus = "REJECTED";
+    },
+    [addResourceThunk().fulfilled](state, { payload }) {
+      console.log("In addResourceThunk.fulfilled reducer.");
+      console.log(payload);
+      // probably reload the component or do something
+      state.loadingStatus = "FULFILLED";
+    },
+    [addResourceThunk.pending](state) {
+      console.log("addResource PENDING");
+      state.loadingStatus = "PENDING";
+    },
+    [addResourceThunk.rejected](state, { error }) {
       state.loadingStatus = "REJECTED";
     },
   },

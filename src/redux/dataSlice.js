@@ -30,7 +30,7 @@ export const getAllResourcesThunk = createAsyncThunk(
 export const deleteResourceThunk = createAsyncThunk(
   "api/delete",
   async (arg, { dispatch, getState, signal }) => {
-    let URL = USERS_ENDPOINT + arg.jwt + "/" + arg.resourceType + "/" + arg.id;
+    let URL = USERS_ENDPOINT + arg.jwt + "/" + arg.dataEndpoint + "/" + arg.id;
     const response = await fetch(URL, { method: "DELETE" })
       .then((data) => {
         return data.json();

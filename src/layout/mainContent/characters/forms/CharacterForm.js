@@ -1,5 +1,7 @@
 import { Field, Form } from "react-final-form";
 import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { changeEditingStatuses } from "../../../../redux/dataSlice";
 
 const required = (value) => (value ? undefined : "Required");
 
@@ -17,6 +19,14 @@ const CharacterForm = (props) => {
       )[0];
     }
   })();
+
+  // Parallel to componentWillUnmount
+  // Runs when component is unmounting to reset the currently editing stats
+  useEffect(() => {
+    return () => {
+      dispatch(changeEditingStatuses({ isEditing: false, editResourceID: 0 }));
+    };
+  });
 
   /**
    * Fields for MVP: Name, Level, Class, Race, Health, AC, Primary Stats

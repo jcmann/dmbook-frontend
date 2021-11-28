@@ -1,6 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Field, Form } from "react-final-form";
 import Select from "react-select";
+import { useDispatch, useSelector } from "react-redux";
+
+import { changeEditingStatuses } from "../../../../redux/dataSlice";
 
 const required = (value) => (value ? undefined : "Required");
 
@@ -13,14 +16,32 @@ const mockMonsters = [
 ];
 
 const EncounterForm = (props) => {
+  const dispatch = useDispatch();
   const [selectedOption, setSelectedOption] = useState(null);
+  const resourceData = useSelector((state) => state.data.resources);
+  const currentlyEditing = useSelector((state) => state.data.editResourceID);
 
-  let formData = {};
+  // An immediately invoked function to assign initial form values based on state
+  let formData = (() => {
+    if (resourceData) {
+      return resourceData.filter(
+        (current) => current.id === currentlyEditing
+      )[0];
+    }
+  })();
 
   const submitHandler = () => {
     console.log("Submitting new encounter....");
     // TODO connect to API
   };
+
+  // Parallel to componentWillUnmount
+  // Runs when component is unmounting to reset the currently editing stats
+  useEffect(() => {
+    return () => {
+      dispatch(changeEditingStatuses({ isEditing: false, editResourceID: 0 }));
+    };
+  });
 
   return (
     <div>

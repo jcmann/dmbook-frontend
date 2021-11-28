@@ -7,9 +7,9 @@ import { getAllResourcesThunk } from "../../../redux/dataSlice";
 export const Encounters = () => {
   const dispatch = useDispatch();
   const userData = useSelector((state) => state.login.authInfo.user);
-  const characterData = useSelector((state) => state.data.resources);
+  const encountersData = useSelector((state) => state.data.resources);
 
-  const tableCols = ["", "Title", "Difficulty", "Description"];
+  const tableCols = ["", "ID", "Title", "Difficulty", "Description"];
   const tableData = {
     columns: tableCols,
     type: "encounters",
@@ -33,7 +33,7 @@ export const Encounters = () => {
       <h2>Encounters</h2>
       <Table
         tableStructure={tableData}
-        data={characterData}
+        data={encountersData}
         resourceType="encounters"
       />
     </>

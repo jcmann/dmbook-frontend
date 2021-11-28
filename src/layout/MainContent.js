@@ -29,7 +29,12 @@ export const MainContent = (props) => {
         <AddNewCharacter formType="edit" />
       )}
       {currentContent === "encounters" && <Encounters />}
-      {currentContent === "encounters:add" && <AddNewEncounter />}
+      {currentContent === "encounters:add" && (
+        <AddNewEncounter formType="add" />
+      )}
+      {currentContent === "encounters:edit" && (
+        <AddNewEncounter formType="edit" />
+      )}
     </main>
   );
 };

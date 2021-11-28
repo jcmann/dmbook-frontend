@@ -70,10 +70,14 @@ export const editResourceThunk = createAsyncThunk(
   "api/put",
   async (arg, { dispatch, getState, signal }) => {
     let URL =
-      USERS_ENDPOINT + arg.jwt + "/" + arg.dataEndpoint + "/" + arg.resource.id;
-    let body = JSON.Stringify(arg.formData);
+      USERS_ENDPOINT + arg.jwt + "/" + arg.dataEndpoint + "/" + arg.formData.id;
+
+    console.log("EDIT URL" + URL);
+
+    let body = JSON.stringify(arg.formData);
+
     const response = fetch(URL, {
-      method: "POST",
+      method: "PUT",
       body: body,
       headers: { "Content-Type": "application/json" },
     })

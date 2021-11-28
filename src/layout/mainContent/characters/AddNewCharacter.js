@@ -1,6 +1,11 @@
 import CharacterForm from "./forms/CharacterForm";
-import { addResourceThunk } from "../../../redux/dataSlice";
+import {
+  addResourceThunk,
+  changeEditingStatuses,
+  editResourceThunk,
+} from "../../../redux/dataSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { changeCurrentContent } from "../../../redux/displaySlice";
 
 const AddNewCharacter = (props) => {
   const dispatch = useDispatch();
@@ -21,9 +26,18 @@ const AddNewCharacter = (props) => {
     );
   };
 
-  const editSubmitHandler = () => {
+  const editSubmitHandler = (values) => {
     console.log("Editing.");
-    // TODO
+    console.log(values);
+    dispatch(
+      editResourceThunk({
+        jwt: userData.signInUserSession.idToken.jwtToken,
+        dataEndpoint: "characters",
+        formData: values,
+      })
+    );
+    dispatch(changeEditingStatuses({ isEditing: false, editResourceID: 0 }));
+    // dispatch(changeCurrentContent({ newContent: "characters" }));
   };
 
   return (

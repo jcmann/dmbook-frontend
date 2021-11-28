@@ -112,7 +112,7 @@ const CharacterForm = (props) => {
             {/*  )}*/}
             {/*</Field>*/}
             <fieldset>
-              <Field name="strength" validate={required}>
+              <Field name="strength">
                 {({ input, meta }) => (
                   <div className="form-group">
                     <label>Strength:</label>
@@ -121,7 +121,7 @@ const CharacterForm = (props) => {
                   </div>
                 )}
               </Field>
-              <Field name="dexterity" validate={required}>
+              <Field name="dexterity">
                 {({ input, meta }) => (
                   <div className="form-group">
                     <label>Dexterity:</label>
@@ -130,7 +130,7 @@ const CharacterForm = (props) => {
                   </div>
                 )}
               </Field>
-              <Field name="constitution" validate={required}>
+              <Field name="constitution">
                 {({ input, meta }) => (
                   <div className="form-group">
                     <label>Constitution:</label>
@@ -139,7 +139,7 @@ const CharacterForm = (props) => {
                   </div>
                 )}
               </Field>
-              <Field name="intelligence" validate={required}>
+              <Field name="intelligence">
                 {({ input, meta }) => (
                   <div className="form-group">
                     <label>Intelligence:</label>
@@ -148,7 +148,7 @@ const CharacterForm = (props) => {
                   </div>
                 )}
               </Field>
-              <Field name="wisdom" validate={required}>
+              <Field name="wisdom">
                 {({ input, meta }) => (
                   <div className="form-group">
                     <label>Wisdom:</label>
@@ -157,7 +157,7 @@ const CharacterForm = (props) => {
                   </div>
                 )}
               </Field>
-              <Field name="charisma" validate={required}>
+              <Field name="charisma">
                 {({ input, meta }) => (
                   <div className="form-group">
                     <label>Charisma:</label>

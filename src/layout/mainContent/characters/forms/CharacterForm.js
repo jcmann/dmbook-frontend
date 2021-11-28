@@ -1,26 +1,37 @@
-import { Field, Form } from 'react-final-form';
+import { Field, Form } from "react-final-form";
+import { useDispatch, useSelector } from "react-redux";
 
-const required = (value) => (value ? undefined : 'Required');
+import { addResourceThunk } from "../../../../redux/dataSlice";
 
-const CharacterForm = (props) => {
+const required = (value) => (value ? undefined : "Required");
+
+const CharacterForm = () => {
+  const dispatch = useDispatch();
+  const userData = useSelector((state) => state.login.authInfo.user);
+
   let formData = {};
 
   /**
-   * Fields: Name, Level, Class, Race, Health, AC, Primary Stats
+   * Fields for MVP: Name, Level, Class, Race, Health, AC, Primary Stats
    */
 
-  // TODO add the stats once basic form is set up
-
-  const submitHandler = () => {
-    console.log('Submitting new character....');
-    // TODO actually connect this to API
+  const submitHandler = async (values) => {
+    console.log("Submitting new character....");
+    console.log(values);
+    dispatch(
+      addResourceThunk({
+        jwt: userData.signInUserSession.idToken.jwtToken,
+        dataEndpoint: "characters",
+        formData: values,
+      })
+    );
   };
 
   return (
     <div>
       <Form
         onSubmit={submitHandler}
-        initialValues={formData}
+        initialValues={{ ...formData }}
         render={({ handleSubmit, form, submitting, pristine, values }) => (
           <form onSubmit={handleSubmit}>
             <Field name="name" validate={required}>
@@ -77,34 +88,34 @@ const CharacterForm = (props) => {
                 </div>
               )}
             </Field>
-            <Field name="hitPoints" validate={required}>
-              {({ input, meta }) => (
-                <div className="form-group">
-                  <label>HP:</label>
-                  <input
-                    {...input}
-                    type="text"
-                    placeholder="Hit Points"
-                    className="form-control"
-                  />
-                  {meta.error && meta.touched && <span>{meta.error}</span>}
-                </div>
-              )}
-            </Field>
-            <Field name="armorClass" validate={required}>
-              {({ input, meta }) => (
-                <div className="form-group">
-                  <label>AC:</label>
-                  <input
-                    {...input}
-                    type="text"
-                    placeholder="Armor Class"
-                    className="form-control"
-                  />
-                  {meta.error && meta.touched && <span>{meta.error}</span>}
-                </div>
-              )}
-            </Field>
+            {/*<Field name="hitPoints" validate={required}>*/}
+            {/*  {({ input, meta }) => (*/}
+            {/*    <div className="form-group">*/}
+            {/*      <label>HP:</label>*/}
+            {/*      <input*/}
+            {/*        {...input}*/}
+            {/*        type="text"*/}
+            {/*        placeholder="Hit Points"*/}
+            {/*        className="form-control"*/}
+            {/*      />*/}
+            {/*      {meta.error && meta.touched && <span>{meta.error}</span>}*/}
+            {/*    </div>*/}
+            {/*  )}*/}
+            {/*</Field>*/}
+            {/*<Field name="armorClass" validate={required}>*/}
+            {/*  {({ input, meta }) => (*/}
+            {/*    <div className="form-group">*/}
+            {/*      <label>AC:</label>*/}
+            {/*      <input*/}
+            {/*        {...input}*/}
+            {/*        type="text"*/}
+            {/*        placeholder="Armor Class"*/}
+            {/*        className="form-control"*/}
+            {/*      />*/}
+            {/*      {meta.error && meta.touched && <span>{meta.error}</span>}*/}
+            {/*    </div>*/}
+            {/*  )}*/}
+            {/*</Field>*/}
             <fieldset>
               <Field name="strength" validate={required}>
                 {({ input, meta }) => (
@@ -180,7 +191,7 @@ const CharacterForm = (props) => {
             </div>
           </form>
         )}
-      ></Form>
+      />
     </div>
   );
 };

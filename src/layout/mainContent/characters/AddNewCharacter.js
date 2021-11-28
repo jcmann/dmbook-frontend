@@ -37,7 +37,7 @@ const AddNewCharacter = (props) => {
       })
     );
     dispatch(changeEditingStatuses({ isEditing: false, editResourceID: 0 }));
-    // dispatch(changeCurrentContent({ newContent: "characters" }));
+    dispatch(changeCurrentContent({ newContent: "characters" })); // TODO polish this
   };
 
   return (

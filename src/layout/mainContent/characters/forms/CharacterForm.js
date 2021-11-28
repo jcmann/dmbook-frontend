@@ -1,11 +1,9 @@
 import { Field, Form } from "react-final-form";
 import { useDispatch, useSelector } from "react-redux";
 
-import { addResourceThunk } from "../../../../redux/dataSlice";
-
 const required = (value) => (value ? undefined : "Required");
 
-const CharacterForm = () => {
+const CharacterForm = (props) => {
   const dispatch = useDispatch();
   const userData = useSelector((state) => state.login.authInfo.user);
 
@@ -15,22 +13,10 @@ const CharacterForm = () => {
    * Fields for MVP: Name, Level, Class, Race, Health, AC, Primary Stats
    */
 
-  const submitHandler = async (values) => {
-    console.log("Submitting new character....");
-    console.log(values);
-    dispatch(
-      addResourceThunk({
-        jwt: userData.signInUserSession.idToken.jwtToken,
-        dataEndpoint: "characters",
-        formData: values,
-      })
-    );
-  };
-
   return (
     <div>
       <Form
-        onSubmit={submitHandler}
+        onSubmit={props.submitHandler}
         initialValues={{ ...formData }}
         render={({ handleSubmit, form, submitting, pristine, values }) => (
           <form onSubmit={handleSubmit}>

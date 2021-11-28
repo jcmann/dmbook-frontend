@@ -1,15 +1,15 @@
-import { useState } from 'react';
-import { Field, Form } from 'react-final-form';
-import Select from 'react-select';
+import { useState } from "react";
+import { Field, Form } from "react-final-form";
+import Select from "react-select";
 
-const required = (value) => (value ? undefined : 'Required');
+const required = (value) => (value ? undefined : "Required");
 
 const mockMonsters = [
-  { value: 'Aboleth', label: 'Aboleth' },
-  { value: 'Acolyte', label: 'Acolyte' },
-  { value: 'Ancient Red Dragon', label: 'Ancient Red Dragon' },
-  { value: 'Bandit', label: 'Bandit' },
-  { value: 'Bat', label: 'Bat' },
+  { value: "Aboleth", label: "Aboleth" },
+  { value: "Acolyte", label: "Acolyte" },
+  { value: "Ancient Red Dragon", label: "Ancient Red Dragon" },
+  { value: "Bandit", label: "Bandit" },
+  { value: "Bat", label: "Bat" },
 ];
 
 const EncounterForm = (props) => {
@@ -18,7 +18,7 @@ const EncounterForm = (props) => {
   let formData = {};
 
   const submitHandler = () => {
-    console.log('Submitting new encounter....');
+    console.log("Submitting new encounter....");
     // TODO connect to API
   };
 
@@ -29,7 +29,7 @@ const EncounterForm = (props) => {
         initialValues={formData}
         render={({ handleSubmit, form, submitting, pristine, values }) => (
           <form onSubmit={handleSubmit}>
-            <Field name="name" validate={required}>
+            <Field name="title" validate={required}>
               {({ input, meta }) => (
                 <div className="form-group">
                   <label>Title:</label>
@@ -57,35 +57,35 @@ const EncounterForm = (props) => {
                 </div>
               )}
             </Field>
-            <div className="form-group">
-              <label>Characters:</label>
-              <Field
-                name="characters"
-                component="select"
-                className="form-control"
-                multiple
-              >
-                <option value="halfling">Character 1</option>
-                <option value="elf">Character 2</option>
-                <option value="dragonborn">Character 3</option>
-              </Field>
-            </div>
-            <Field name="monsters" validate={required}>
-              {({ input, meta }) => (
-                <div className="form-group">
-                  <label>Monsters:</label>
-                  <Select
-                    defaultValue={selectedOption}
-                    onChange={setSelectedOption}
-                    options={mockMonsters}
-                    isMulti={true}
-                    isSearchable={true}
-                  />
-                  {meta.error && meta.touched && <span>{meta.error}</span>}
-                </div>
-              )}
-            </Field>
-            <Field name="hitPoints" component="textarea" validate={required}>
+            {/*<div className="form-group">*/}
+            {/*  <label>Characters:</label>*/}
+            {/*  <Field*/}
+            {/*    name="characters"*/}
+            {/*    component="select"*/}
+            {/*    className="form-control"*/}
+            {/*    multiple*/}
+            {/*  >*/}
+            {/*    <option value="halfling">Character 1</option>*/}
+            {/*    <option value="elf">Character 2</option>*/}
+            {/*    <option value="dragonborn">Character 3</option>*/}
+            {/*  </Field>*/}
+            {/*</div>*/}
+            {/*<Field name="monsters" validate={required}>*/}
+            {/*  {({ input, meta }) => (*/}
+            {/*    <div className="form-group">*/}
+            {/*      <label>Monsters:</label>*/}
+            {/*      <Select*/}
+            {/*        defaultValue={selectedOption}*/}
+            {/*        onChange={setSelectedOption}*/}
+            {/*        options={mockMonsters}*/}
+            {/*        isMulti={true}*/}
+            {/*        isSearchable={true}*/}
+            {/*      />*/}
+            {/*      {meta.error && meta.touched && <span>{meta.error}</span>}*/}
+            {/*    </div>*/}
+            {/*  )}*/}
+            {/*</Field>*/}
+            <Field name="description" component="textarea" validate={required}>
               {({ input, meta }) => (
                 <div className="form-group">
                   <label>Description:</label>
@@ -119,7 +119,7 @@ const EncounterForm = (props) => {
             </div>
           </form>
         )}
-      ></Form>
+      />
     </div>
   );
 };

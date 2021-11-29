@@ -30,11 +30,6 @@ const EncounterForm = (props) => {
     }
   })();
 
-  const submitHandler = () => {
-    console.log("Submitting new encounter....");
-    // TODO connect to API
-  };
-
   // Parallel to componentWillUnmount
   // Runs when component is unmounting to reset the currently editing stats
   useEffect(() => {
@@ -46,7 +41,7 @@ const EncounterForm = (props) => {
   return (
     <div>
       <Form
-        onSubmit={submitHandler}
+        onSubmit={props.submitHandler}
         initialValues={formData}
         render={({ handleSubmit, form, submitting, pristine, values }) => (
           <form onSubmit={handleSubmit}>

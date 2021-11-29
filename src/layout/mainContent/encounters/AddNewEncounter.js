@@ -24,6 +24,10 @@ const AddNewEncounter = (props) => {
         formData: values,
       })
     );
+    await dispatch(
+      changeEditingStatuses({ isEditing: false, editResourceID: 0 })
+    );
+    dispatch(changeCurrentContent({ newContent: "encounters" })); // TODO polish this
   };
 
   const editSubmitHandler = async (values) => {
@@ -39,7 +43,7 @@ const AddNewEncounter = (props) => {
     await dispatch(
       changeEditingStatuses({ isEditing: false, editResourceID: 0 })
     );
-    dispatch(changeCurrentContent({ newContent: "characters" })); // TODO polish this
+    dispatch(changeCurrentContent({ newContent: "encounters" })); // TODO polish this
   };
 
   return (

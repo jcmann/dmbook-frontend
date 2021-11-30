@@ -27,6 +27,38 @@ export const getAllResourcesThunk = createAsyncThunk(
   }
 );
 
+export const initDatasetThunk = createAsyncThunk(
+  "api/init",
+  async (arg, { dispatch, getState, signal }) => {
+    let encountersURL = USERS_ENDPOINT + arg.jwt + "/encounters";
+    let charactersURL = USERS_ENDPOINT + arg.jwt + "/characters";
+    // TODO add monsters URL
+
+    let encounterResponse;
+    let charactersResponse;
+    let encountersData = [];
+    let charactersData = [];
+
+    try {
+      encounterResponse = await fetch(encountersURL);
+      charactersResponse = await fetch(charactersURL);
+      // TODO monsters response
+
+      encountersData = await encounterResponse.json();
+      charactersData = await charactersResponse.json();
+      // todo monsters data
+    } catch (err) {
+      console.error(err);
+    }
+
+    // shape data and return it
+    return {
+      encounters: encountersData,
+      characters: charactersData,
+    };
+  }
+);
+
 export const deleteResourceThunk = createAsyncThunk(
   "api/delete",
   async (arg, { dispatch, getState, signal }) => {
@@ -101,6 +133,7 @@ export const dataSlice = createSlice({
     resources: [],
     isEditing: false,
     editResourceID: 0,
+    allResources: {},
   },
   reducers: {
     changeEditingStatuses(state, action) {
@@ -109,6 +142,19 @@ export const dataSlice = createSlice({
     },
   },
   extraReducers: {
+    [initDatasetThunk.fulfilled](state, { payload }) {
+      console.log("PAYLOAD: ");
+      console.log(payload);
+      state.allResources = payload;
+      state.loadingStatus = "FULFILLED";
+    },
+    [initDatasetThunk.pending](state) {
+      console.log("PENDING");
+      state.loadingStatus = "PENDING";
+    },
+    [initDatasetThunk.rejected](state, { error }) {
+      state.loadingStatus = "REJECTED";
+    },
     [getAllResourcesThunk.fulfilled](state, { payload }) {
       console.log("PAYLOAD: ");
       console.log(payload);

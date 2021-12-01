@@ -27,35 +27,40 @@ export const getAllResourcesThunk = createAsyncThunk(
   }
 );
 
+/**
+ * This method initializes all data used by the application when the App component renders, using a useEffect.
+ * It initializes state data for encounters, characters, and monsters, which is then maintained through other
+ * dispatched actions.
+ */
 export const initDatasetThunk = createAsyncThunk(
   "api/init",
   async (arg, { dispatch, getState, signal }) => {
-    console.log("Beginning initDatasetThunk");
+    // console.log("Beginning initDatasetThunk");
     let URL = USERS_ENDPOINT + arg.jwt + "/all";
-    console.log("URL: " + URL);
+    // console.log("URL: " + URL);
 
     let response = "";
     let data = {};
 
     try {
-      console.log("Beginning try block.");
+      // console.log("Beginning try block.");
       response = await fetch(URL);
-      console.log("Enc Response:");
-      console.log(response);
+      // console.log("Enc Response:");
+      // console.log(response);
 
       data = await response.json();
-      console.log("Enc data:");
-      console.log(data);
+      // console.log("Enc data:");
+      // console.log(data);
     } catch (err) {
       console.error(err);
     }
 
-    console.log("Final data:");
+    // console.log("Final data:");
     // shape data and return it
     const finalData = {
       ...data,
     };
-    console.log(finalData);
+    // console.log(finalData);
 
     return finalData;
   }
@@ -132,13 +137,8 @@ export const dataSlice = createSlice({
   name: "dataSlice",
   initialState: {
     loadingStatus: null,
-    resources: [],
     isEditing: false,
     editResourceID: 0,
-    // allResources: {
-    //   characters: [],
-    //   encounters: [],
-    // },
     characters: [],
     encounters: [],
     monsters: [],

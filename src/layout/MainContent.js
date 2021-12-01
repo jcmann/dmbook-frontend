@@ -1,5 +1,5 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import { Characters } from "./mainContent/characters/Characters";
 import AddNewCharacter from "./mainContent/characters/AddNewCharacter";
@@ -8,6 +8,7 @@ import { Encounters } from "./mainContent/encounters/Encounters";
 import AddNewEncounter from "./mainContent/encounters/AddNewEncounter";
 import { Home } from "./mainContent/home/Home";
 import { Login } from "./mainContent/login/Login";
+import { initDatasetThunk } from "../redux/dataSlice";
 
 const styles = {
   border: "1px solid black",

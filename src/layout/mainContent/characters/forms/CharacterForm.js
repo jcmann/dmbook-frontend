@@ -8,7 +8,7 @@ const required = (value) => (value ? undefined : "Required");
 const CharacterForm = (props) => {
   const dispatch = useDispatch();
   const userData = useSelector((state) => state.login.authInfo.user);
-  const resourceData = useSelector((state) => state.data.resources);
+  const resourceData = useSelector((state) => state.data.characters);
   const currentlyEditing = useSelector((state) => state.data.editResourceID);
 
   // An immediately invoked function to assign initial form values based on state

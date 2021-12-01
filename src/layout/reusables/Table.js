@@ -15,13 +15,16 @@ export const Table = (props) => {
    * to verify it "has" the correct # of cols
    */
   const dataWithActions = () => {
-    if (currentData !== null) {
-      return currentData.map((current) => {
+    if (props.data !== null) {
+      return props.data.map((current) => {
         return {
           actions: (
             <div className="editAndDelete">
-              <EditIcon itemID={current.id} resourceType={currentContent} />
-              <DeleteIcon itemID={current.id} resourceType={currentContent} />
+              <EditIcon itemID={current.id} resourceType={props.resourceType} />
+              <DeleteIcon
+                itemID={current.id}
+                resourceType={props.resourceType}
+              />
             </div>
           ),
           ...current,

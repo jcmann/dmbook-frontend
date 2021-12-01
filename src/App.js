@@ -1,27 +1,37 @@
-import { Sidebar } from './layout/SideBar';
-import { MainContent } from './layout/MainContent';
-import Amplify from 'aws-amplify';
-import awsconfig from './aws-exports';
+import { Sidebar } from "./layout/SideBar";
+import { MainContent } from "./layout/MainContent";
+import Amplify from "aws-amplify";
+import awsconfig from "./aws-exports";
 import {
   AmplifyAuthenticator,
   AmplifySignOut,
   withAuthenticator,
-} from '@aws-amplify/ui-react';
-import { AuthState, onAuthUIStateChange } from '@aws-amplify/ui-components';
-import { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { updateAuthInfo } from './redux/loginSlice';
+} from "@aws-amplify/ui-react";
+import Auth from "@aws-amplify/auth";
+import { onAuthUIStateChange } from "@aws-amplify/ui-components";
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { updateAuthInfo } from "./redux/loginSlice";
+import { initDatasetThunk } from "./redux/dataSlice";
 
 Amplify.configure(awsconfig);
 
 const App = () => {
   const dispatch = useDispatch();
-  // auth state
-  // const [authState, setAuthState] = useState(); // authState = nextAuths
-  // const [user, setUser] = useState(); // authdata
+  const userData = useSelector((state) => state.login.authInfo.user);
+  const jwt = Auth.currentSession();
 
-  //
-  const authInfo = useSelector((state) => state.login.authInfo);
+  // Run this request once when the component first renders to request characters
+  useEffect(async () => {
+    const promise = await dispatch(
+      initDatasetThunk({
+        jwt: (await jwt).getIdToken().getJwtToken(),
+      })
+    );
+    return () => {
+      promise.abort();
+    };
+  }, [initDatasetThunk]);
 
   // useEffect
   useEffect(() => {

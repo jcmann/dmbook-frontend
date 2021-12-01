@@ -7,16 +7,31 @@ import {
   AmplifySignOut,
   withAuthenticator,
 } from "@aws-amplify/ui-react";
+import Auth from "@aws-amplify/auth";
 import { onAuthUIStateChange } from "@aws-amplify/ui-components";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { updateAuthInfo } from "./redux/loginSlice";
+import { initDatasetThunk } from "./redux/dataSlice";
 
 Amplify.configure(awsconfig);
 
 const App = () => {
   const dispatch = useDispatch();
-  const authInfo = useSelector((state) => state.login.authInfo);
+  const userData = useSelector((state) => state.login.authInfo.user);
+  const jwt = Auth.currentSession();
+
+  // Run this request once when the component first renders to request characters
+  useEffect(async () => {
+    const promise = await dispatch(
+      initDatasetThunk({
+        jwt: (await jwt).getIdToken().getJwtToken(),
+      })
+    );
+    return () => {
+      promise.abort();
+    };
+  }, [initDatasetThunk]);
 
   // useEffect
   useEffect(() => {

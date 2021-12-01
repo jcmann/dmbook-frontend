@@ -20,8 +20,11 @@ export const Table = (props) => {
         return {
           actions: (
             <div className="editAndDelete">
-              <EditIcon itemID={current.id} resourceType={currentContent} />
-              <DeleteIcon itemID={current.id} resourceType={currentContent} />
+              <EditIcon itemID={current.id} resourceType={props.resourceType} />
+              <DeleteIcon
+                itemID={current.id}
+                resourceType={props.resourceType}
+              />
             </div>
           ),
           ...current,

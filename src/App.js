@@ -7,11 +7,10 @@ import {
   AmplifySignOut,
   withAuthenticator,
 } from "@aws-amplify/ui-react";
-import { AuthState, onAuthUIStateChange } from "@aws-amplify/ui-components";
-import { useEffect, useState } from "react";
+import { onAuthUIStateChange } from "@aws-amplify/ui-components";
+import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { updateAuthInfo } from "./redux/loginSlice";
-import { getAllResourcesThunk, initDatasetThunk } from "./redux/dataSlice";
 
 Amplify.configure(awsconfig);
 
@@ -29,21 +28,6 @@ const App = () => {
       );
     });
   }, []);
-
-  // Run this request once when the app first renders to request all data
-  useEffect(() => {
-    if (authInfo.user) {
-      // because the amplify login is a bit glitchy when it comes to logging out when the token is expired
-      const promise = dispatch(
-        initDatasetThunk({
-          jwt: authInfo.user.signInUserSession.idToken.jwtToken,
-        })
-      );
-      return () => {
-        promise.abort();
-      };
-    }
-  }, [initDatasetThunk]);
 
   return (
     <div className="App row m-4">

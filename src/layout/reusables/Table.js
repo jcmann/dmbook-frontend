@@ -15,8 +15,8 @@ export const Table = (props) => {
    * to verify it "has" the correct # of cols
    */
   const dataWithActions = () => {
-    if (currentData !== null) {
-      return currentData.map((current) => {
+    if (props.data !== null) {
+      return props.data.map((current) => {
         return {
           actions: (
             <div className="editAndDelete">

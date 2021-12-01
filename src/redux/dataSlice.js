@@ -30,32 +30,34 @@ export const getAllResourcesThunk = createAsyncThunk(
 export const initDatasetThunk = createAsyncThunk(
   "api/init",
   async (arg, { dispatch, getState, signal }) => {
-    let encountersURL = USERS_ENDPOINT + arg.jwt + "/encounters";
-    let charactersURL = USERS_ENDPOINT + arg.jwt + "/characters";
-    // TODO add monsters URL
+    console.log("Beginning initDatasetThunk");
+    let URL = USERS_ENDPOINT + arg.jwt + "/all";
+    console.log("URL: " + URL);
 
-    let encounterResponse;
-    let charactersResponse;
-    let encountersData = [];
-    let charactersData = [];
+    let response = "";
+    let data = {};
 
     try {
-      encounterResponse = await fetch(encountersURL);
-      charactersResponse = await fetch(charactersURL);
-      // TODO monsters response
+      console.log("Beginning try block.");
+      response = await fetch(URL);
+      console.log("Enc Response:");
+      console.log(response);
 
-      encountersData = await encounterResponse.json();
-      charactersData = await charactersResponse.json();
-      // todo monsters data
+      data = await response.json();
+      console.log("Enc data:");
+      console.log(data);
     } catch (err) {
       console.error(err);
     }
 
+    console.log("Final data:");
     // shape data and return it
-    return {
-      encounters: encountersData,
-      characters: charactersData,
+    const finalData = {
+      ...data,
     };
+    console.log(finalData);
+
+    return finalData;
   }
 );
 
@@ -133,7 +135,13 @@ export const dataSlice = createSlice({
     resources: [],
     isEditing: false,
     editResourceID: 0,
-    allResources: {},
+    // allResources: {
+    //   characters: [],
+    //   encounters: [],
+    // },
+    characters: [],
+    encounters: [],
+    monsters: [],
   },
   reducers: {
     changeEditingStatuses(state, action) {
@@ -145,7 +153,10 @@ export const dataSlice = createSlice({
     [initDatasetThunk.fulfilled](state, { payload }) {
       console.log("PAYLOAD: ");
       console.log(payload);
-      state.allResources = payload;
+      // state.allResources = payload;
+      state.characters = payload.characters;
+      state.encounters = payload.encounters;
+      state.monsters = payload.monsters;
       state.loadingStatus = "FULFILLED";
     },
     [initDatasetThunk.pending](state) {

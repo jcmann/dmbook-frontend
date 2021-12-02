@@ -20,7 +20,7 @@ const EncounterForm = (props) => {
   const dispatch = useDispatch();
   const [selectedOption, setSelectedOption] = useState(null);
   const userData = useSelector((state) => state.login.authInfo.user);
-  const resourceData = useSelector((state) => state.data.resources);
+  const resourceData = useSelector((state) => state.data.encounters);
   const currentlyEditing = useSelector((state) => state.data.editResourceID);
 
   let characterData = []; // should the uE just be an IIF?

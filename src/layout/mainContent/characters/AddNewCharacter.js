@@ -24,6 +24,8 @@ const AddNewCharacter = (props) => {
         formData: values,
       })
     );
+    dispatch(changeEditingStatuses({ isEditing: false, editResourceID: 0 }));
+    dispatch(changeCurrentContent({ newContent: "characters" })); // TODO polish this
   };
 
   const editSubmitHandler = (values) => {

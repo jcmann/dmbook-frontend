@@ -43,7 +43,7 @@ const AddNewEncounter = (props) => {
     await dispatch(
       changeEditingStatuses({ isEditing: false, editResourceID: 0 })
     );
-    // dispatch(changeCurrentContent({ newContent: "encounters" })); // TODO polish this
+    dispatch(changeCurrentContent({ newContent: "encounters" })); // TODO polish this
   };
 
   return (

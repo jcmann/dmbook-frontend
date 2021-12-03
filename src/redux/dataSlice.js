@@ -91,17 +91,21 @@ export const addResourceThunk = createAsyncThunk(
   async (arg, { dispatch, getState, signal }) => {
     let URL = USERS_ENDPOINT + arg.jwt + "/" + arg.dataEndpoint; // api/users/:jwt/characters for example
     let body = JSON.stringify(arg.formData);
-    const response = fetch(URL, {
+    const response = await fetch(URL, {
       method: "POST",
       body: body,
       headers: { "Content-Type": "application/json" },
     })
       .then((data) => {
-        console.log(data);
+        return data.json();
+      })
+      .then((dataJSON) => {
+        return dataJSON;
       })
       .catch((err) => {
         console.error(err);
       });
+    return { resourceType: arg.dataEndpoint, newData: arg.formData };
   }
 );
 
@@ -196,6 +200,11 @@ export const dataSlice = createSlice({
       console.log("In addResourceThunk.fulfilled reducer.");
       console.log(payload);
       // probably reload the component or do something
+      if (payload.resourceType === "encounters") {
+        state.encounters.push(payload.newData);
+      } else if (payload.resourceType === "characters") {
+        state.characters.push(payload.newData);
+      }
       state.loadingStatus = "FULFILLED";
     },
     [addResourceThunk.pending](state) {

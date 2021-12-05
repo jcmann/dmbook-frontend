@@ -131,6 +131,8 @@ export const editResourceThunk = createAsyncThunk(
       .catch((err) => {
         console.error(err);
       });
+
+    return await dispatch(initDatasetThunk({ jwt: arg.jwt }));
   }
 );
 
@@ -217,7 +219,16 @@ export const dataSlice = createSlice({
     [editResourceThunk.fulfilled](state, { payload }) {
       console.log("In editResourceThunk.fulfilled reducer.");
       console.log(payload);
-      // probably reload the component or do something
+      // // probably reload the component or do something
+      // if ((payload.resourceType = "encounters")) {
+      //   const withoutEdited = state.encounters.filter(
+      //     (current) => current.id === payload.data.id
+      //   );
+      //   state.encounters = withoutEdited;
+      //
+      //   console.log("without edited:");
+      //   console.log(withoutEdited);
+      // }
       state.loadingStatus = "FULFILLED";
     },
     [editResourceThunk.pending](state) {

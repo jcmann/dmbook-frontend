@@ -18,7 +18,7 @@ const AddNewEncounter = (props) => {
   const addNewSubmitHandler = async (values) => {
     console.log("Submitting new encounter....");
     console.log(values);
-    dispatch(
+    await dispatch(
       addResourceThunk({
         jwt: userData.signInUserSession.idToken.jwtToken,
         dataEndpoint: "encounters",

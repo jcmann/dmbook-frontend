@@ -18,7 +18,7 @@ const AddNewCharacter = (props) => {
   const addNewSubmitHandler = async (values) => {
     console.log("Submitting new character....");
     console.log(values);
-    dispatch(
+    await dispatch(
       addResourceThunk({
         jwt: userData.signInUserSession.idToken.jwtToken,
         dataEndpoint: "characters",

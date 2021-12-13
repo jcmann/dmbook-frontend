@@ -18,7 +18,7 @@ export const MainContent = (props) => {
   const currentContent = useSelector((state) => state.display.currentContent);
 
   return (
-    <main className={"col-sm-8"} style={styles}>
+    <main className={"col-sm-9"} style={styles}>
       {currentContent === "home" && <Home />}
       {currentContent === "login" && <Login />}
       {currentContent === "createAccount" && <CreateAccount />}

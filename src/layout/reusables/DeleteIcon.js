@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 
-import { deleteResourceThunk } from "../../redux/dataSlice";
+import { deleteResourceThunk, initDatasetThunk } from "../../redux/dataSlice";
 
 const DeleteIcon = (props) => {
   const dispatch = useDispatch();
@@ -14,6 +14,9 @@ const DeleteIcon = (props) => {
         dataEndpoint: props.resourceType,
         id: props.itemID,
       })
+    );
+    dispatch(
+      initDatasetThunk({ jwt: userData.signInUserSession.idToken.jwtToken })
     );
   };
 

@@ -3,6 +3,7 @@ import {
   addResourceThunk,
   changeEditingStatuses,
   editResourceThunk,
+  initDatasetThunk,
 } from "../../../redux/dataSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { changeCurrentContent } from "../../../redux/displaySlice";
@@ -28,6 +29,9 @@ const AddNewEncounter = (props) => {
       changeEditingStatuses({ isEditing: false, editResourceID: 0 })
     );
     dispatch(changeCurrentContent({ newContent: "encounters" })); // TODO polish this
+    dispatch(
+      initDatasetThunk({ jwt: userData.signInUserSession.idToken.jwtToken })
+    );
   };
 
   const editSubmitHandler = async (values) => {
@@ -44,6 +48,9 @@ const AddNewEncounter = (props) => {
       changeEditingStatuses({ isEditing: false, editResourceID: 0 })
     );
     dispatch(changeCurrentContent({ newContent: "encounters" })); // TODO polish this
+    dispatch(
+      initDatasetThunk({ jwt: userData.signInUserSession.idToken.jwtToken })
+    );
   };
 
   return (

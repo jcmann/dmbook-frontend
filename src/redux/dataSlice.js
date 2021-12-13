@@ -198,15 +198,9 @@ export const dataSlice = createSlice({
     [deleteResourceThunk.rejected](state, { error }) {
       state.loadingStatus = "REJECTED";
     },
-    [addResourceThunk.fulfilled](state, { payload }) {
+    [addResourceThunk.fulfilled](state, { payload, dispatch }) {
       console.log("In addResourceThunk.fulfilled reducer.");
       console.log(payload);
-      // probably reload the component or do something
-      if (payload.resourceType === "encounters") {
-        state.encounters.push(payload.newData);
-      } else if (payload.resourceType === "characters") {
-        state.characters.push(payload.newData);
-      }
       state.loadingStatus = "FULFILLED";
     },
     [addResourceThunk.pending](state) {

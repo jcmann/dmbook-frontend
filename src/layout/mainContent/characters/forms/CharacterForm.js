@@ -82,7 +82,7 @@ const CharacterForm = (props) => {
                 </div>
               )}
             </Field>
-            <Field name="class" validate={required}>
+            <Field name="characterClass" validate={required}>
               {({ input, meta }) => (
                 <div className="form-group">
                   <label>Class:</label>

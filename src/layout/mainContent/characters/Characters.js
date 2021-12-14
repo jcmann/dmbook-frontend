@@ -1,11 +1,14 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { Table } from "../../reusables/Table";
 
+/**
+ * This component contains the listing of all characters belonging to the currently signed in user.
+ */
 export const Characters = () => {
   const allData = useSelector((state) => state.data.characters);
 
   const tableCols = [
-    "",
+    "", // The first column needs to be empty for the edit/delete
     "ID",
     "Name",
     "Level",
@@ -18,6 +21,7 @@ export const Characters = () => {
     "Wis",
     "Cha",
   ];
+
   const tableData = {
     columns: tableCols,
     type: "characters",

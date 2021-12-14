@@ -8,6 +8,9 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { changeCurrentContent } from "../../../redux/displaySlice";
 
+/**
+ * This is a wrapper component for the characters form that defines handler logic for the form.
+ */
 const AddEditCharacter = (props) => {
   const dispatch = useDispatch();
   const userData = useSelector((state) => state.login.authInfo.user);

@@ -15,7 +15,7 @@ const AddEditCharacter = (props) => {
   const dispatch = useDispatch();
   const userData = useSelector((state) => state.login.authInfo.user);
 
-  const h1Text =
+  const h2Text =
     props.formType === "add" ? "Add A New Character" : "Edit Character";
 
   const addNewSubmitHandler = async (values) => {
@@ -54,7 +54,7 @@ const AddEditCharacter = (props) => {
 
   return (
     <>
-      <h1>{h1Text}</h1>
+      <h2>{h2Text}</h2>
       <CharacterForm
         submitHandler={
           props.formType === "add" ? addNewSubmitHandler : editSubmitHandler

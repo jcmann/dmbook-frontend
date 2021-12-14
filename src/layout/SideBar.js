@@ -3,14 +3,10 @@ import { MainMenu } from "./MainMenu";
 import { ToolMenu } from "./ToolMenu";
 import { useSelector } from "react-redux";
 
-/*
-  TODO: Make ToolMenu render dynamically depending on 
-  what the current main content is. 
-  - Pull from redux store state
-  - Add to this component with useSelector
-  - Pass props to ToolMenu
-*/
-
+/**
+ * This builds the entire side menu, containing both the main menu and, if appropriate, the tool menu with the
+ * button to add a new character or encounter
+ */
 export const Sidebar = (props) => {
   const currentContent = useSelector((state) => state.display.currentContent);
 

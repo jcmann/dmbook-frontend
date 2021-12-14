@@ -7,12 +7,18 @@ import { Encounters } from "./mainContent/encounters/Encounters";
 import AddEditEncounter from "./mainContent/encounters/AddEditEncounter";
 import { Home } from "./mainContent/home/Home";
 import { Login } from "./mainContent/login/Login";
-import { initDatasetThunk } from "../redux/dataSlice";
 
 const styles = {
   border: "1px solid black",
 };
 
+/**
+ * This component acts as a pseudo-router to display the main content area. It relies on the currentContent
+ * state object in the display slice to determine which content to display.
+ *
+ * Some content sections, namely characters and encounters, have either :add or :edit after their main content.
+ * This is done to determine which form type to add (edit or add) when rendering that form, via the formType prop.
+ */
 export const MainContent = (props) => {
   const currentContent = useSelector((state) => state.display.currentContent);
 

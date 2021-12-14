@@ -8,11 +8,14 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { changeCurrentContent } from "../../../redux/displaySlice";
 
+/**
+ * This is a wrapper component for the encounters form that defines handler logic for the form.
+ */
 const AddEditEncounter = (props) => {
   const dispatch = useDispatch();
   const userData = useSelector((state) => state.login.authInfo.user);
 
-  const h1Text =
+  const h2Text =
     props.formType === "add" ? "Add A New Encounter" : "Edit Encounter";
 
   const addNewSubmitHandler = async (values) => {
@@ -55,7 +58,7 @@ const AddEditEncounter = (props) => {
 
   return (
     <>
-      <h1>Add New Encounter</h1>
+      <h2>{h2Text}</h2>
       <EncounterForm
         submitHandler={
           props.formType === "add" ? addNewSubmitHandler : editSubmitHandler

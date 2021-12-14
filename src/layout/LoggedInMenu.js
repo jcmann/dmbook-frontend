@@ -1,10 +1,11 @@
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { changeCurrentContent } from "../redux/displaySlice";
-import { logOut } from "../redux/loginSlice";
-import { AmplifySignOut, withAuthenticator } from "@aws-amplify/ui-react";
 import { LogOutButton } from "./mainContent/authComponents/LogOutButton";
 import "../App.css";
 
+/**
+ * A menu that's displayed only when a user is currently logged in. It shows the main menu (home/characters/encounters/sign out).
+ */
 const LoggedInMenu = () => {
   const dispatch = useDispatch();
 
@@ -23,11 +24,6 @@ const LoggedInMenu = () => {
   const encountersClickHandler = (event) => {
     event.preventDefault();
     navClickHandler("encounters");
-  };
-  const logoutHandler = (event) => {
-    event.preventDefault();
-    dispatch(logOut());
-    navClickHandler("home");
   };
 
   return (

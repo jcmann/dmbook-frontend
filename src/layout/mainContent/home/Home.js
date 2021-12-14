@@ -1,3 +1,6 @@
+/**
+ * Very simple home component just to display basic instructional text
+ */
 export const Home = () => {
   return (
     <>

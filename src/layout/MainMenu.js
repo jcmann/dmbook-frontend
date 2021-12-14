@@ -1,4 +1,3 @@
-import { LoggedOutMenu } from "./LoggedOutMenu";
 import LoggedInMenu from "./LoggedInMenu";
 import { useSelector } from "react-redux";
 

@@ -6,6 +6,10 @@ import { changeEditingStatuses } from "../../../../redux/dataSlice";
 
 const required = (value) => (value ? undefined : "Required");
 
+/**
+ * This form handles both editing and adding new encounters. It relies on state to determine if the form is being
+ * rendered to edit an existing resource or a new resource by checking the stat's editResourceID.
+ */
 const EncounterForm = (props) => {
   const dispatch = useDispatch();
   const encountersData = useSelector((state) => state.data.encounters);

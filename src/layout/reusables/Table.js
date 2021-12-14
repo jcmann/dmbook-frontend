@@ -1,19 +1,15 @@
 import EditIcon from "./EditIcon";
 import DeleteIcon from "./DeleteIcon";
-import { useSelector } from "react-redux";
 
-// TODO figure out table generation bug where extra tds are created (might be 2x?)
-
+/**
+ * The Table component dynamically builds a table based on the props provided from its parent component.
+ * It requires a few props to work:
+ *  - resourceType --> the type of data being displayed (encounters, characters) to pass to the edit/delete icons
+ *  - data --> the actual array of objects to be split into rows/columns
+ *  - tableStructure --> an array of columns to create
+ */
 export const Table = (props) => {
-  const currentContent = useSelector((state) => state.display.currentContent);
-  const currentData = useSelector((state) => state.data.resources);
-  /**
-   * Needs to receive: table structure, data
-   * Data might want to come from state
-   *
-   * When we get the data from the request we might need
-   * to verify it "has" the correct # of cols
-   */
+  // This builds the actions elements (edit/delete)
   const dataWithActions = () => {
     if (props.data !== null) {
       return props.data.map((current) => {

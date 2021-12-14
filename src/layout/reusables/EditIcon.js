@@ -10,12 +10,14 @@ import "./EditIcon.css";
 import Auth from "@aws-amplify/auth";
 
 /**
- * Expects props itemID and resourceType
+ * The Edit icon does not have anything to do with actual requests, but instead just switches the content
+ * being displayed to the edit form, which then pulls its data directly from state. The EditIcon does change the
+ * editing statuses data, namely the isEditing and editResourceID, which is the state the form itself checks.
  */
 const EditIcon = (props) => {
   const dispatch = useDispatch();
-  const userData = useSelector((state) => state.login.authInfo.user);
 
+  // Dispatches actions to correctly display editing content, the rest of which is handled by the form system
   const editClickHandler = async (event) => {
     event.preventDefault();
     dispatch(

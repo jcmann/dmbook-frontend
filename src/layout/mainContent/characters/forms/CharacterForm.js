@@ -6,6 +6,10 @@ import "../../../../App.css";
 
 const required = (value) => (value ? undefined : "Required");
 
+/**
+ * This form handles both editing and adding new characters. It relies on state to determine if the form is being
+ * rendered to edit an existing resource or a new resource by checking the stat's editResourceID.
+ */
 const CharacterForm = (props) => {
   const dispatch = useDispatch();
   const resourceData = useSelector((state) => state.data.characters);

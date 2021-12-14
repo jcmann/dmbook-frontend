@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { Characters } from "./mainContent/characters/Characters";
 import AddEditCharacter from "./mainContent/characters/AddEditCharacter";
-import { CreateAccount } from "./mainContent/createAccount/CreateAccount";
 import { Encounters } from "./mainContent/encounters/Encounters";
 import AddEditEncounter from "./mainContent/encounters/AddEditEncounter";
 import { Home } from "./mainContent/home/Home";
@@ -21,7 +20,6 @@ export const MainContent = (props) => {
     <main className={"col-sm-9"} style={styles}>
       {currentContent === "home" && <Home />}
       {currentContent === "login" && <Login />}
-      {currentContent === "createAccount" && <CreateAccount />}
       {currentContent === "characters" && <Characters />}
       {currentContent === "characters:add" && (
         <AddEditCharacter formType="add" />

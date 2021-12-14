@@ -1,5 +1,5 @@
-import { useDispatch, useSelector } from 'react-redux';
-import { changeCurrentContent } from '../redux/displaySlice';
+import { useDispatch, useSelector } from "react-redux";
+import { changeCurrentContent } from "../redux/displaySlice";
 // import Button from './reusables/Button';
 
 export const ToolMenu = (props) => {
@@ -12,11 +12,11 @@ export const ToolMenu = (props) => {
 
   const addNewHandler = (event) => {
     event.preventDefault();
-    dispatch(changeCurrentContent({ newContent: currentContent + ':add' }));
+    dispatch(changeCurrentContent({ newContent: currentContent + ":add" }));
   };
 
   return (
-    <section>
+    <section className="centered">
       <button onClick={addNewHandler}>
         Add new {currentContent.slice(0, currentContent.length - 1)}
       </button>

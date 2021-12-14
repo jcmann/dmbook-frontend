@@ -1,8 +1,9 @@
-import { useSelector, useDispatch } from 'react-redux';
-import { changeCurrentContent } from '../redux/displaySlice';
-import { logOut } from '../redux/loginSlice';
-import { AmplifySignOut, withAuthenticator } from '@aws-amplify/ui-react';
-import { LogOutButton } from './mainContent/authComponents/LogOutButton';
+import { useSelector, useDispatch } from "react-redux";
+import { changeCurrentContent } from "../redux/displaySlice";
+import { logOut } from "../redux/loginSlice";
+import { AmplifySignOut, withAuthenticator } from "@aws-amplify/ui-react";
+import { LogOutButton } from "./mainContent/authComponents/LogOutButton";
+import "../App.css";
 
 const LoggedInMenu = () => {
   const dispatch = useDispatch();
@@ -13,20 +14,20 @@ const LoggedInMenu = () => {
 
   const homeClickHandler = (event) => {
     event.preventDefault();
-    navClickHandler('home');
+    navClickHandler("home");
   };
   const charactersClickHandler = (event) => {
     event.preventDefault();
-    navClickHandler('characters');
+    navClickHandler("characters");
   };
   const encountersClickHandler = (event) => {
     event.preventDefault();
-    navClickHandler('encounters');
+    navClickHandler("encounters");
   };
   const logoutHandler = (event) => {
     event.preventDefault();
     dispatch(logOut());
-    navClickHandler('home');
+    navClickHandler("home");
   };
 
   return (

@@ -1,7 +1,7 @@
-import React from 'react';
-import { MainMenu } from './MainMenu';
-import { ToolMenu } from './ToolMenu';
-import { useSelector } from 'react-redux';
+import React from "react";
+import { MainMenu } from "./MainMenu";
+import { ToolMenu } from "./ToolMenu";
+import { useSelector } from "react-redux";
 
 /*
   TODO: Make ToolMenu render dynamically depending on 
@@ -15,9 +15,9 @@ export const Sidebar = (props) => {
   const currentContent = useSelector((state) => state.display.currentContent);
 
   return (
-    <aside className="col-sm-3">
+    <aside className="col-sm-3 d-flex flex-column align-items-center">
       <MainMenu />
-      {(currentContent == 'characters' || currentContent == 'encounters') && (
+      {(currentContent == "characters" || currentContent == "encounters") && (
         <ToolMenu />
       )}
     </aside>

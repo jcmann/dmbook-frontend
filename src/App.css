@@ -1,0 +1,13 @@
+.centered {
+    text-align: center;
+}
+
+nav ul li {
+    list-style-type: none;
+}
+
+ul {
+    padding: 0;
+    padding-inline-start: -40px !important;
+    margin-left: 0;
+}

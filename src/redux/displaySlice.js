@@ -10,9 +10,8 @@ export const displaySlice = createSlice({
   },
   reducers: {
     changeCurrentContent: (state, action) => {
-      console.log(`In Reducer. Payload: ${action.payload.newContent}`);
+      // console.log(`In Reducer. Payload: ${action.payload.newContent}`);
       state.currentContent = action.payload.newContent;
-      // state.currentContent = action.payload.newContent;
     },
   },
 });

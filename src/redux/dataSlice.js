@@ -1,31 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { API_BASE_URL, USERS_ENDPOINT } from "../config/config";
-
-/**
- * getAllResources expects the following information passed in as the first argument: the logged-in user's ID
- * Token JWT from auth info, and the endpoint being requested. This information forms the URL that the
- * request is sent to.
- */
-export const getAllResourcesThunk = createAsyncThunk(
-  "api/getAll",
-  async (arg, { dispatch, getState, signal }) => {
-    let URL = USERS_ENDPOINT + arg.jwt + "/" + arg.dataEndpoint;
-    const response = await fetch(URL)
-      .then((data) => {
-        return data.json();
-      })
-      .then((dataJSON) => {
-        console.log("In the getAllResourcesThunk. Data is currently:");
-        console.log(dataJSON);
-        return dataJSON;
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-
-    return response;
-  }
-);
+import { USERS_ENDPOINT } from "../config/config";
 
 /**
  * This method initializes all data used by the application when the App component renders, using a useEffect.
@@ -35,37 +9,57 @@ export const getAllResourcesThunk = createAsyncThunk(
 export const initDatasetThunk = createAsyncThunk(
   "api/init",
   async (arg, { dispatch, getState, signal }) => {
-    // console.log("Beginning initDatasetThunk");
     let URL = USERS_ENDPOINT + arg.jwt + "/all";
-    // console.log("URL: " + URL);
-
     let response = "";
     let data = {};
 
     try {
-      // console.log("Beginning try block.");
       response = await fetch(URL);
-      // console.log("Enc Response:");
-      // console.log(response);
-
       data = await response.json();
-      // console.log("Enc data:");
-      // console.log(data);
     } catch (err) {
       console.error(err);
     }
 
-    // console.log("Final data:");
-    // shape data and return it
     const finalData = {
       ...data,
     };
-    // console.log(finalData);
 
     return finalData;
   }
 );
 
+/**
+ * getAllResources expects the following information passed in as the first argument: the logged-in user's ID
+ * Token JWT from auth info, and the endpoint being requested. This information forms the URL that the
+ * request is sent to.
+ *
+ * NOTE: this is deprecated, but I left it to show initial proof of concept
+ */
+// export const getAllResourcesThunk = createAsyncThunk(
+//   "api/getAll",
+//   async (arg, { dispatch, getState, signal }) => {
+//     let URL = USERS_ENDPOINT + arg.jwt + "/" + arg.dataEndpoint;
+//     const response = await fetch(URL)
+//       .then((data) => {
+//         return data.json();
+//       })
+//       .then((dataJSON) => {
+//         // console.log("In the getAllResourcesThunk. Data is currently:");
+//         // console.log(dataJSON);
+//         return dataJSON;
+//       })
+//       .catch((err) => {
+//         console.error(err);
+//       });
+//
+//     return response;
+//   }
+// );
+
+/**
+ * This handles all delete requests. It requires an arg object with a JWT, dataEndpoint (ex: encounters), and resource ID (id).
+ * It sends a DELETE request to the API.
+ */
 export const deleteResourceThunk = createAsyncThunk(
   "api/delete",
   async (arg, { dispatch, getState, signal }) => {
@@ -75,9 +69,8 @@ export const deleteResourceThunk = createAsyncThunk(
         return data.json();
       })
       .then((dataJSON) => {
-        console.log("In the deleteResourceThunk. Response data is currently:");
-        console.log(dataJSON);
-        // probably delete from local state here to reduce traffic requests
+        // console.log("In the deleteResourceThunk. Response data is currently:");
+        // console.log(dataJSON);
         return dataJSON;
       })
       .catch((err) => {
@@ -86,6 +79,10 @@ export const deleteResourceThunk = createAsyncThunk(
   }
 );
 
+/**
+ * This thunk handles forming POST requests to send to the API. It requires an arg object with a jwt property,
+ * a dataEndpoint property (ex: characters), and formData. formData should be provided via a submit handler.
+ */
 export const addResourceThunk = createAsyncThunk(
   "api/post",
   async (arg, { dispatch, getState, signal }) => {
@@ -109,13 +106,16 @@ export const addResourceThunk = createAsyncThunk(
   }
 );
 
+/**
+ * This thunk handles PUT requests to the API. It expects an arg object with properties: jwt (ID token), dataEndpoint, and
+ * formData.
+ * @type {AsyncThunk<unknown, void, {}>}
+ */
 export const editResourceThunk = createAsyncThunk(
   "api/put",
   async (arg, { dispatch, getState, signal }) => {
     let URL =
       USERS_ENDPOINT + arg.jwt + "/" + arg.dataEndpoint + "/" + arg.formData.id;
-
-    console.log("EDIT URL" + URL);
 
     let body = JSON.stringify(arg.formData);
 
@@ -123,14 +123,9 @@ export const editResourceThunk = createAsyncThunk(
       method: "PUT",
       body: body,
       headers: { "Content-Type": "application/json" },
-    })
-      .then((data) => {
-        console.log("Response from PUT: ");
-        console.log(data);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
+    }).catch((err) => {
+      console.error(err);
+    });
 
     return await dispatch(initDatasetThunk({ jwt: arg.jwt }));
   }
@@ -157,50 +152,35 @@ export const dataSlice = createSlice({
   },
   extraReducers: {
     [initDatasetThunk.fulfilled](state, { payload }) {
-      console.log("PAYLOAD: ");
-      console.log(payload);
-      // state.allResources = payload;
+      // console.log("PAYLOAD: ");
+      // console.log(payload);
       state.characters = payload.characters;
       state.encounters = payload.encounters;
       state.monsters = payload.monsters;
       state.loadingStatus = "FULFILLED";
     },
     [initDatasetThunk.pending](state) {
-      console.log("PENDING");
+      // console.log("PENDING");
       state.loadingStatus = "PENDING";
     },
     [initDatasetThunk.rejected](state, { error }) {
       state.loadingStatus = "REJECTED";
     },
-    [getAllResourcesThunk.fulfilled](state, { payload }) {
-      console.log("PAYLOAD: ");
-      console.log(payload);
-      state.resources = payload;
-      state.loadingStatus = "FULFILLED";
-    },
-    [getAllResourcesThunk.pending](state) {
-      console.log("PENDING");
-      state.loadingStatus = "PENDING";
-    },
-    [getAllResourcesThunk.rejected](state, { error }) {
-      state.loadingStatus = "REJECTED";
-    },
     [deleteResourceThunk.fulfilled](state, { payload }) {
-      console.log("In deleteResourceThunk.fulfilled reducer.");
-      console.log(payload);
-      // probably reload the component or do something
+      // console.log("In deleteResourceThunk.fulfilled reducer.");
+      // console.log(payload);
       state.loadingStatus = "FULFILLED";
     },
     [deleteResourceThunk.pending](state) {
-      console.log("deleteResource PENDING");
+      // console.log("deleteResource PENDING");
       state.loadingStatus = "PENDING";
     },
     [deleteResourceThunk.rejected](state, { error }) {
       state.loadingStatus = "REJECTED";
     },
     [addResourceThunk.fulfilled](state, { payload, dispatch }) {
-      console.log("In addResourceThunk.fulfilled reducer.");
-      console.log(payload);
+      // console.log("In addResourceThunk.fulfilled reducer.");
+      // console.log(payload);
       state.loadingStatus = "FULFILLED";
     },
     [addResourceThunk.pending](state) {
@@ -211,22 +191,12 @@ export const dataSlice = createSlice({
       state.loadingStatus = "REJECTED";
     },
     [editResourceThunk.fulfilled](state, { payload }) {
-      console.log("In editResourceThunk.fulfilled reducer.");
-      console.log(payload);
-      // // probably reload the component or do something
-      // if ((payload.resourceType = "encounters")) {
-      //   const withoutEdited = state.encounters.filter(
-      //     (current) => current.id === payload.data.id
-      //   );
-      //   state.encounters = withoutEdited;
-      //
-      //   console.log("without edited:");
-      //   console.log(withoutEdited);
-      // }
+      // console.log("In editResourceThunk.fulfilled reducer.");
+      // console.log(payload);
       state.loadingStatus = "FULFILLED";
     },
     [editResourceThunk.pending](state) {
-      console.log("editResource PENDING");
+      // console.log("editResource PENDING");
       state.loadingStatus = "PENDING";
     },
     [editResourceThunk.rejected](state, { error }) {

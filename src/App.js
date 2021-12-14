@@ -2,11 +2,7 @@ import { Sidebar } from "./layout/SideBar";
 import { MainContent } from "./layout/MainContent";
 import Amplify from "aws-amplify";
 import awsconfig from "./aws-exports";
-import {
-  AmplifyAuthenticator,
-  AmplifySignOut,
-  withAuthenticator,
-} from "@aws-amplify/ui-react";
+import { withAuthenticator } from "@aws-amplify/ui-react";
 import Auth from "@aws-amplify/auth";
 import { onAuthUIStateChange } from "@aws-amplify/ui-components";
 import { useEffect } from "react";
@@ -16,6 +12,9 @@ import { initDatasetThunk } from "./redux/dataSlice";
 
 Amplify.configure(awsconfig);
 
+/**
+ * This renders the app itself and contains some app-wide logic related to login information.
+ */
 const App = () => {
   const dispatch = useDispatch();
   const userData = useSelector((state) => state.login.authInfo.user);

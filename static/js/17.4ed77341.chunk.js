@@ -1,2 +1,0 @@
-(this["webpackJsonpdmbook-frontend"]=this["webpackJsonpdmbook-frontend"]||[]).push([[17],{202:function(t,n,e){"use strict";e.r(n),e.d(n,"amplify_auth_container",(function(){return i}));var o=e(11),i=function(){function t(t){Object(o.k)(this,t)}return t.prototype.render=function(){return Object(o.i)(o.b,null,Object(o.i)("form",{autoComplete:"on",hidden:!0},Object(o.i)("input",{name:"username"}),Object(o.i)("input",{name:"password",type:"password"}),Object(o.i)("input",{type:"submit"})),Object(o.i)("slot",null))},t}()}}]);
-//# sourceMappingURL=17.4ed77341.chunk.js.map

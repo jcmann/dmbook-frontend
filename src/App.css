@@ -11,3 +11,7 @@ ul {
     padding-inline-start: -40px !important;
     margin-left: 0;
 }
+
+.characterStat {
+    margin: 0.5em;
+}

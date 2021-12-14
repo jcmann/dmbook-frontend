@@ -2,6 +2,7 @@ import { Field, Form } from "react-final-form";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { changeEditingStatuses } from "../../../../redux/dataSlice";
+import "../../../../App.css";
 
 const required = (value) => (value ? undefined : "Required");
 
@@ -59,7 +60,7 @@ const CharacterForm = (props) => {
                   <label>Level:</label>
                   <input
                     {...input}
-                    type="text"
+                    type="number"
                     placeholder="Level"
                     className="form-control"
                   />
@@ -67,115 +68,117 @@ const CharacterForm = (props) => {
                 </div>
               )}
             </Field>
-            <div className="form-group">
-              <label>Race:</label>
-              <Field
-                name="characterClass"
-                component="select"
-                className="form-control"
-              >
-                <option value="halfling">Halfling</option>
-                <option value="elf">Elf</option>
-                <option value="dragonborn">Dragonborn</option>
-              </Field>
-            </div>
             <Field name="race" validate={required}>
               {({ input, meta }) => (
                 <div className="form-group">
-                  <label>Class:</label>
+                  <label>Race:</label>
                   <input
                     {...input}
                     type="text"
-                    placeholder="Barbarian"
+                    placeholder="Ex: Aarakocra"
                     className="form-control"
                   />
                   {meta.error && meta.touched && <span>{meta.error}</span>}
                 </div>
               )}
             </Field>
-            {/*<Field name="hitPoints" validate={required}>*/}
-            {/*  {({ input, meta }) => (*/}
-            {/*    <div className="form-group">*/}
-            {/*      <label>HP:</label>*/}
-            {/*      <input*/}
-            {/*        {...input}*/}
-            {/*        type="text"*/}
-            {/*        placeholder="Hit Points"*/}
-            {/*        className="form-control"*/}
-            {/*      />*/}
-            {/*      {meta.error && meta.touched && <span>{meta.error}</span>}*/}
-            {/*    </div>*/}
-            {/*  )}*/}
-            {/*</Field>*/}
-            {/*<Field name="armorClass" validate={required}>*/}
-            {/*  {({ input, meta }) => (*/}
-            {/*    <div className="form-group">*/}
-            {/*      <label>AC:</label>*/}
-            {/*      <input*/}
-            {/*        {...input}*/}
-            {/*        type="text"*/}
-            {/*        placeholder="Armor Class"*/}
-            {/*        className="form-control"*/}
-            {/*      />*/}
-            {/*      {meta.error && meta.touched && <span>{meta.error}</span>}*/}
-            {/*    </div>*/}
-            {/*  )}*/}
-            {/*</Field>*/}
-            <fieldset>
-              <Field name="strength">
-                {({ input, meta }) => (
-                  <div className="form-group">
-                    <label>Strength:</label>
-                    <input {...input} type="number" className="form-control" />
-                    {meta.error && meta.touched && <span>{meta.error}</span>}
-                  </div>
-                )}
-              </Field>
-              <Field name="dexterity">
-                {({ input, meta }) => (
-                  <div className="form-group">
-                    <label>Dexterity:</label>
-                    <input {...input} type="number" className="form-control" />
-                    {meta.error && meta.touched && <span>{meta.error}</span>}
-                  </div>
-                )}
-              </Field>
-              <Field name="constitution">
-                {({ input, meta }) => (
-                  <div className="form-group">
-                    <label>Constitution:</label>
-                    <input {...input} type="number" className="form-control" />
-                    {meta.error && meta.touched && <span>{meta.error}</span>}
-                  </div>
-                )}
-              </Field>
-              <Field name="intelligence">
-                {({ input, meta }) => (
-                  <div className="form-group">
-                    <label>Intelligence:</label>
-                    <input {...input} type="number" className="form-control" />
-                    {meta.error && meta.touched && <span>{meta.error}</span>}
-                  </div>
-                )}
-              </Field>
-              <Field name="wisdom">
-                {({ input, meta }) => (
-                  <div className="form-group">
-                    <label>Wisdom:</label>
-                    <input {...input} type="number" className="form-control" />
-                    {meta.error && meta.touched && <span>{meta.error}</span>}
-                  </div>
-                )}
-              </Field>
-              <Field name="charisma">
-                {({ input, meta }) => (
-                  <div className="form-group">
-                    <label>Charisma:</label>
-                    <input {...input} type="number" className="form-control" />
-                    {meta.error && meta.touched && <span>{meta.error}</span>}
-                  </div>
-                )}
-              </Field>
+            <Field name="class" validate={required}>
+              {({ input, meta }) => (
+                <div className="form-group">
+                  <label>Class:</label>
+                  <input
+                    {...input}
+                    type="text"
+                    placeholder="Ex: Barbarian"
+                    className="form-control"
+                  />
+                  {meta.error && meta.touched && <span>{meta.error}</span>}
+                </div>
+              )}
+            </Field>
+
+            <fieldset className="container flex-wrap m-auto">
+              <legend>Stats</legend>
+              <div className="row">
+                <Field name="strength">
+                  {({ input, meta }) => (
+                    <div className="form-group characterStat col-sm-3">
+                      <label>Strength:</label>
+                      <input
+                        {...input}
+                        type="number"
+                        className="form-control"
+                      />
+                      {meta.error && meta.touched && <span>{meta.error}</span>}
+                    </div>
+                  )}
+                </Field>
+                <Field name="dexterity">
+                  {({ input, meta }) => (
+                    <div className="form-group characterStat col-sm-3">
+                      <label>Dexterity:</label>
+                      <input
+                        {...input}
+                        type="number"
+                        className="form-control"
+                      />
+                      {meta.error && meta.touched && <span>{meta.error}</span>}
+                    </div>
+                  )}
+                </Field>
+                <Field name="constitution">
+                  {({ input, meta }) => (
+                    <div className="form-group characterStat col-sm-3">
+                      <label>Constitution:</label>
+                      <input
+                        {...input}
+                        type="number"
+                        className="form-control"
+                      />
+                      {meta.error && meta.touched && <span>{meta.error}</span>}
+                    </div>
+                  )}
+                </Field>
+                <Field name="intelligence">
+                  {({ input, meta }) => (
+                    <div className="form-group characterStat col-sm-3">
+                      <label>Intelligence:</label>
+                      <input
+                        {...input}
+                        type="number"
+                        className="form-control"
+                      />
+                      {meta.error && meta.touched && <span>{meta.error}</span>}
+                    </div>
+                  )}
+                </Field>
+                <Field name="wisdom">
+                  {({ input, meta }) => (
+                    <div className="form-group characterStat col-sm-3">
+                      <label>Wisdom:</label>
+                      <input
+                        {...input}
+                        type="number"
+                        className="form-control"
+                      />
+                      {meta.error && meta.touched && <span>{meta.error}</span>}
+                    </div>
+                  )}
+                </Field>
+                <Field name="charisma">
+                  {({ input, meta }) => (
+                    <div className="form-group characterStat col-sm-3">
+                      <label>Charisma:</label>
+                      <input
+                        {...input}
+                        type="number"
+                        className="form-control"
+                      />
+                      {meta.error && meta.touched && <span>{meta.error}</span>}
+                    </div>
+                  )}
+                </Field>
+              </div>
             </fieldset>
             <div className="form-group">
               <button

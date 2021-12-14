@@ -2,10 +2,10 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { Characters } from "./mainContent/characters/Characters";
-import AddNewCharacter from "./mainContent/characters/AddNewCharacter";
+import AddEditCharacter from "./mainContent/characters/AddEditCharacter";
 import { CreateAccount } from "./mainContent/createAccount/CreateAccount";
 import { Encounters } from "./mainContent/encounters/Encounters";
-import AddNewEncounter from "./mainContent/encounters/AddNewEncounter";
+import AddEditEncounter from "./mainContent/encounters/AddEditEncounter";
 import { Home } from "./mainContent/home/Home";
 import { Login } from "./mainContent/login/Login";
 import { initDatasetThunk } from "../redux/dataSlice";
@@ -24,17 +24,17 @@ export const MainContent = (props) => {
       {currentContent === "createAccount" && <CreateAccount />}
       {currentContent === "characters" && <Characters />}
       {currentContent === "characters:add" && (
-        <AddNewCharacter formType="add" />
+        <AddEditCharacter formType="add" />
       )}
       {currentContent === "characters:edit" && (
-        <AddNewCharacter formType="edit" />
+        <AddEditCharacter formType="edit" />
       )}
       {currentContent === "encounters" && <Encounters />}
       {currentContent === "encounters:add" && (
-        <AddNewEncounter formType="add" />
+        <AddEditEncounter formType="add" />
       )}
       {currentContent === "encounters:edit" && (
-        <AddNewEncounter formType="edit" />
+        <AddEditEncounter formType="edit" />
       )}
     </main>
   );

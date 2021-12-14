@@ -8,7 +8,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { changeCurrentContent } from "../../../redux/displaySlice";
 
-const AddNewCharacter = (props) => {
+const AddEditCharacter = (props) => {
   const dispatch = useDispatch();
   const userData = useSelector((state) => state.login.authInfo.user);
 
@@ -61,4 +61,4 @@ const AddNewCharacter = (props) => {
   );
 };
 
-export default AddNewCharacter;
+export default AddEditCharacter;

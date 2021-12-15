@@ -11,9 +11,9 @@ const DeleteIcon = (props) => {
   const dispatch = useDispatch();
   const userData = useSelector((state) => state.login.authInfo.user);
 
-  const deleteClickHandler = (event) => {
+  const deleteClickHandler = async (event) => {
     event.preventDefault();
-    dispatch(
+    await dispatch(
       deleteResourceThunk({
         jwt: userData.signInUserSession.idToken.jwtToken,
         dataEndpoint: props.resourceType,
